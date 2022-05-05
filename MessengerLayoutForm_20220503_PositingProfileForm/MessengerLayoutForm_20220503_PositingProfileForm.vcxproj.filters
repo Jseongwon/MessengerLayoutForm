@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Generator\DrawingGenerator.cpp">
+      <Filter>Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Generator\Generator.cpp">
+      <Filter>Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\CardListForm.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\CardListStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\CardState.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\ChatProfileCompileMode.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\DownState.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\DrawingCard.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\HoverState.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\MenuCard.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\MenuListForm.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\NormalState.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\PostingCardListStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\PostingProfileCompileMode.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\ProfileCompileMode.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\ProfileCompiler.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\ProfileForm.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\SubMenuCard.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\SubMenuForm.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\UserCardListStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\UserProfileCompileMode.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\ItemObservers.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\ItemSubject.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\Observer.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\ScrollActions.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\Scrolls.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\Subject.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\TextExtent.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser\Parser.cpp">
+      <Filter>Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Printer\Printer.cpp">
+      <Filter>Printer</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\Bodys.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\BodysState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\ChatBodysState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\ChatProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\ChatProfileProcessor.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\ChatProfileState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\FriendBodysState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\FriendProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\Kategori.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\NormalKategori.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\OneChatProfileState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\OtherChatProfileState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\PersonalProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\PostingBodysState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\PostingProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\Profile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\ProfileDirector.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\ProfileFactory.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\Profiles.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\SpecialKategori.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\SystemChatProfileState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\UserProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\DefaultTextMode.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\LengthTextMode.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\ListToken.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\Scanner.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\TextMode.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\Token.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\UtilityFunction.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Time.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Date.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="MessengerLayoutApp.cpp" />
+    <ClCompile Include="MessengerLayoutForm.cpp" />
+    <ClCompile Include="Layout\ProfileStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\ChatProfileStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\PostingProfileStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\DocumentProfileCompileMode.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\PostingHeaderProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\PostingBodyProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiles\PostingCommentProfile.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Generator\DrawingGenerator.h">
+      <Filter>Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator\Generator.h">
+      <Filter>Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\CardListForm.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\CardListStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\CardState.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\ChatProfileCompileMode.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\DownState.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\DrawingCard.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\HoverState.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\MenuCard.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\MenuListForm.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\NormalState.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\PostingCardListStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\PostingProfileCompileMode.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\ProfileCompileMode.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\ProfileCompiler.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\ProfileForm.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\SubMenuCard.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\SubMenuForm.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\UserCardListStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\UserProfileCompileMode.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\ItemObservers.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\ItemSubject.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\Observer.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\ScrollActions.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\Scrolls.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\Subject.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\TextExtent.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Parser.h">
+      <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Printer\Printer.h">
+      <Filter>Printer</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\Bodys.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\BodysState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\ChatBodysState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\ChatProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\ChatProfileProcessor.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\ChatProfileState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\FriendBodysState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\FriendProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\Kategori.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\NormalKategori.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\OneChatProfileState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\OtherChatProfileState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\PersonalProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\PostingBodysState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\PostingProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\Profile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\ProfileDirector.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\ProfileFactory.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\Profiles.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\SpecialKategori.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\SystemChatProfileState.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\UserProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\DefaultTextMode.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\LengthTextMode.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\ListToken.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\Scanner.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\TextMode.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\Token.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\UtilityFunction.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Time.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\MemoryLeakHeader.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\LinkedList.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Date.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Array.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="MessengerLayoutApp.h" />
+    <ClInclude Include="MessengerLayoutForm.h" />
+    <ClInclude Include="Layout\ProfileStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\ChatProfileStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\PostingProfileStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\DocumentProfileCompileMode.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\PostingHeaderProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\PostingBodyProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\PostingCommentProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Generator">
+      <UniqueIdentifier>{a6a76ce5-a574-449e-85ad-f25f5d0139cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layout">
+      <UniqueIdentifier>{71364af3-189f-4141-9306-ddf1b86bb4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Observers">
+      <UniqueIdentifier>{99fc7c69-275c-4a9e-8e76-a680e23a6b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser">
+      <UniqueIdentifier>{fb63d773-4aa4-463c-9e3f-a6b36700ff05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Printer">
+      <UniqueIdentifier>{89a7b8e9-5c91-4cbb-b2b0-985f91de6418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Profiles">
+      <UniqueIdentifier>{2b5bb0ca-9532-4e2f-93f1-e5a5131eb3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scanner">
+      <UniqueIdentifier>{f1bc6076-e20c-4135-9700-35a53b73c63b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{d4e5c01a-3dc9-4678-91ad-aadb96a26123}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AB590FAA-7FF3-452B-A96F-CEB171ECBA12}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MessengerLayoutForm20220503PositingProfileForm</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Generator\DrawingGenerator.cpp" />
+    <ClCompile Include="Generator\Generator.cpp" />
+    <ClCompile Include="Layout\CardListForm.cpp" />
+    <ClCompile Include="Layout\CardListStyle.cpp" />
+    <ClCompile Include="Layout\CardState.cpp" />
+    <ClCompile Include="Layout\ChatProfileCompileMode.cpp" />
+    <ClCompile Include="Layout\ChatProfileStyle.cpp" />
+    <ClCompile Include="Layout\DocumentProfileCompileMode.cpp" />
+    <ClCompile Include="Layout\DownState.cpp" />
+    <ClCompile Include="Layout\DrawingCard.cpp" />
+    <ClCompile Include="Layout\HoverState.cpp" />
+    <ClCompile Include="Layout\MenuCard.cpp" />
+    <ClCompile Include="Layout\MenuListForm.cpp" />
+    <ClCompile Include="Layout\NormalState.cpp" />
+    <ClCompile Include="Layout\PostingCardListStyle.cpp" />
+    <ClCompile Include="Layout\PostingProfileStyle.cpp" />
+    <ClCompile Include="Layout\PostingProfileCompileMode.cpp" />
+    <ClCompile Include="Layout\ProfileCompileMode.cpp" />
+    <ClCompile Include="Layout\ProfileCompiler.cpp" />
+    <ClCompile Include="Layout\ProfileForm.cpp" />
+    <ClCompile Include="Layout\ProfileStyle.cpp" />
+    <ClCompile Include="Layout\SubMenuCard.cpp" />
+    <ClCompile Include="Layout\SubMenuForm.cpp" />
+    <ClCompile Include="Layout\UserCardListStyle.cpp" />
+    <ClCompile Include="Layout\UserProfileCompileMode.cpp" />
+    <ClCompile Include="MessengerLayoutApp.cpp" />
+    <ClCompile Include="MessengerLayoutForm.cpp" />
+    <ClCompile Include="Observers\ItemObservers.cpp" />
+    <ClCompile Include="Observers\ItemSubject.cpp" />
+    <ClCompile Include="Observers\Observer.cpp" />
+    <ClCompile Include="Observers\ScrollActions.cpp" />
+    <ClCompile Include="Observers\Scrolls.cpp" />
+    <ClCompile Include="Observers\Subject.cpp" />
+    <ClCompile Include="Observers\TextExtent.cpp" />
+    <ClCompile Include="Parser\Parser.cpp" />
+    <ClCompile Include="Printer\Printer.cpp" />
+    <ClCompile Include="Profiles\Bodys.cpp" />
+    <ClCompile Include="Profiles\BodysState.cpp" />
+    <ClCompile Include="Profiles\ChatBodysState.cpp" />
+    <ClCompile Include="Profiles\ChatProfile.cpp" />
+    <ClCompile Include="Profiles\ChatProfileProcessor.cpp" />
+    <ClCompile Include="Profiles\ChatProfileState.cpp" />
+    <ClCompile Include="Profiles\FriendBodysState.cpp" />
+    <ClCompile Include="Profiles\FriendProfile.cpp" />
+    <ClCompile Include="Profiles\Kategori.cpp" />
+    <ClCompile Include="Profiles\NormalKategori.cpp" />
+    <ClCompile Include="Profiles\OneChatProfileState.cpp" />
+    <ClCompile Include="Profiles\OtherChatProfileState.cpp" />
+    <ClCompile Include="Profiles\PersonalProfile.cpp" />
+    <ClCompile Include="Profiles\PostingBodyProfile.cpp" />
+    <ClCompile Include="Profiles\PostingBodysState.cpp" />
+    <ClCompile Include="Profiles\PostingCommentProfile.cpp" />
+    <ClCompile Include="Profiles\PostingHeaderProfile.cpp" />
+    <ClCompile Include="Profiles\PostingProfile.cpp" />
+    <ClCompile Include="Profiles\Profile.cpp" />
+    <ClCompile Include="Profiles\ProfileDirector.cpp" />
+    <ClCompile Include="Profiles\ProfileFactory.cpp" />
+    <ClCompile Include="Profiles\Profiles.cpp" />
+    <ClCompile Include="Profiles\SpecialKategori.cpp" />
+    <ClCompile Include="Profiles\SystemChatProfileState.cpp" />
+    <ClCompile Include="Profiles\UserProfile.cpp" />
+    <ClCompile Include="Scanner\DefaultTextMode.cpp" />
+    <ClCompile Include="Scanner\LengthTextMode.cpp" />
+    <ClCompile Include="Scanner\ListToken.cpp" />
+    <ClCompile Include="Scanner\Scanner.cpp" />
+    <ClCompile Include="Scanner\TextMode.cpp" />
+    <ClCompile Include="Scanner\Token.cpp" />
+    <ClCompile Include="Utilities\Date.cpp" />
+    <ClCompile Include="Utilities\Time.cpp" />
+    <ClCompile Include="Utilities\UtilityFunction.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Generator\DrawingGenerator.h" />
+    <ClInclude Include="Generator\Generator.h" />
+    <ClInclude Include="Layout\CardListForm.h" />
+    <ClInclude Include="Layout\CardListStyle.h" />
+    <ClInclude Include="Layout\CardState.h" />
+    <ClInclude Include="Layout\ChatProfileCompileMode.h" />
+    <ClInclude Include="Layout\ChatProfileStyle.h" />
+    <ClInclude Include="Layout\DocumentProfileCompileMode.h" />
+    <ClInclude Include="Layout\DownState.h" />
+    <ClInclude Include="Layout\DrawingCard.h" />
+    <ClInclude Include="Layout\HoverState.h" />
+    <ClInclude Include="Layout\MenuCard.h" />
+    <ClInclude Include="Layout\MenuListForm.h" />
+    <ClInclude Include="Layout\NormalState.h" />
+    <ClInclude Include="Layout\PostingCardListStyle.h" />
+    <ClInclude Include="Layout\PostingProfileStyle.h" />
+    <ClInclude Include="Layout\PostingProfileCompileMode.h" />
+    <ClInclude Include="Layout\ProfileCompileMode.h" />
+    <ClInclude Include="Layout\ProfileCompiler.h" />
+    <ClInclude Include="Layout\ProfileForm.h" />
+    <ClInclude Include="Layout\ProfileStyle.h" />
+    <ClInclude Include="Layout\SubMenuCard.h" />
+    <ClInclude Include="Layout\SubMenuForm.h" />
+    <ClInclude Include="Layout\UserCardListStyle.h" />
+    <ClInclude Include="Layout\UserProfileCompileMode.h" />
+    <ClInclude Include="MessengerLayoutApp.h" />
+    <ClInclude Include="MessengerLayoutForm.h" />
+    <ClInclude Include="Observers\ItemObservers.h" />
+    <ClInclude Include="Observers\ItemSubject.h" />
+    <ClInclude Include="Observers\Observer.h" />
+    <ClInclude Include="Observers\ScrollActions.h" />
+    <ClInclude Include="Observers\Scrolls.h" />
+    <ClInclude Include="Observers\Subject.h" />
+    <ClInclude Include="Observers\TextExtent.h" />
+    <ClInclude Include="Parser\Parser.h" />
+    <ClInclude Include="Printer\Printer.h" />
+    <ClInclude Include="Profiles\Bodys.h" />
+    <ClInclude Include="Profiles\BodysState.h" />
+    <ClInclude Include="Profiles\ChatBodysState.h" />
+    <ClInclude Include="Profiles\ChatProfile.h" />
+    <ClInclude Include="Profiles\ChatProfileProcessor.h" />
+    <ClInclude Include="Profiles\ChatProfileState.h" />
+    <ClInclude Include="Profiles\FriendBodysState.h" />
+    <ClInclude Include="Profiles\FriendProfile.h" />
+    <ClInclude Include="Profiles\Kategori.h" />
+    <ClInclude Include="Profiles\NormalKategori.h" />
+    <ClInclude Include="Profiles\OneChatProfileState.h" />
+    <ClInclude Include="Profiles\OtherChatProfileState.h" />
+    <ClInclude Include="Profiles\PersonalProfile.h" />
+    <ClInclude Include="Profiles\PostingBodyProfile.h" />
+    <ClInclude Include="Profiles\PostingBodysState.h" />
+    <ClInclude Include="Profiles\PostingCommentProfile.h" />
+    <ClInclude Include="Profiles\PostingHeaderProfile.h" />
+    <ClInclude Include="Profiles\PostingProfile.h" />
+    <ClInclude Include="Profiles\Profile.h" />
+    <ClInclude Include="Profiles\ProfileDirector.h" />
+    <ClInclude Include="Profiles\ProfileFactory.h" />
+    <ClInclude Include="Profiles\Profiles.h" />
+    <ClInclude Include="Profiles\SpecialKategori.h" />
+    <ClInclude Include="Profiles\SystemChatProfileState.h" />
+    <ClInclude Include="Profiles\UserProfile.h" />
+    <ClInclude Include="Scanner\DefaultTextMode.h" />
+    <ClInclude Include="Scanner\LengthTextMode.h" />
+    <ClInclude Include="Scanner\ListToken.h" />
+    <ClInclude Include="Scanner\Scanner.h" />
+    <ClInclude Include="Scanner\TextMode.h" />
+    <ClInclude Include="Scanner\Token.h" />
+    <ClInclude Include="Utilities\Array.h" />
+    <ClInclude Include="Utilities\Date.h" />
+    <ClInclude Include="Utilities\LinkedList.h" />
+    <ClInclude Include="Utilities\MemoryLeakHeader.h" />
+    <ClInclude Include="Utilities\Time.h" />
+    <ClInclude Include="Utilities\UtilityFunction.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
