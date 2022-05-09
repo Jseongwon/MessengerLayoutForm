@@ -439,34 +439,52 @@ void DrawingGenerator::Visit(PostingProfile* postingProfile) {
 
 void DrawingGenerator::Visit(PostingHeaderProfile* postingHeaderProfile) {
 	CRect clientRect;
+	CRect fillRect;
 	CRect postingHeaderProfileRect;
-
+	CRect kategoriRect;
 	CRect titleRect;
 	CRect writerImageRect;
 	CRect writerRect;
 	CRect writerGradeRect;
-	CRect writedAtRect;
+	CRect writedDateRect;
+	CRect writedTimeRect;
 	CRect viewsRect;
+	CRect fontRect;
 
 	CDC* pDC;
 
 	LOGFONT titleFont;
 	LOGFONT contentsFont;
 
+	HPEN hPen;
+	HPEN oldPen;
+
 	HFONT hFont;
 	HFONT oldFont;
 
 	TEXTMETRIC metric;
 
-	string contents;
+	string kategoriString;
+	string writedAtString;
+	string dateString;
+	string timeString;
+	string printDateString;
+	string printTimeString;
+
+	Date date;
+	Time time;
 
 	Long systemWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	Long imageWidth = systemWidth / 22;
 	Long sideMargin = imageWidth / 3;
+	Long lineMargin = sideMargin / 4;
 	Long pageSideMargin = sideMargin * 2;
 	Long pointedWidth = sideMargin / 2;
 	Long textHeight;
+	Long contentsWidth;
 
+	COLORREF backgroundColor;
+	COLORREF textColor;
 	COLORREF oldColor;
 	COLORREF oldTextColor;
 
@@ -485,6 +503,21 @@ void DrawingGenerator::Visit(PostingHeaderProfile* postingHeaderProfile) {
 
 	string fileName;
 	wstring fileName_w;
+
+	CPoint point;
+	CPoint downPoint;
+
+	SubjectState* subjectState;
+	TextExtent* textExtent;
+
+	GetCursorPos(&point);
+	this->pCurrentWnd->ScreenToClient(&point);
+
+	downPoint = CPoint(((ItemSubject*)this->pCurrentWnd)->GetSubjectState()->GetSelectedXPoint(),
+		((ItemSubject*)this->pCurrentWnd)->GetSubjectState()->GetSelectedYPoint());
+
+	subjectState = dynamic_cast<ItemSubject*>(this->pCurrentWnd)->GetSubjectState();//
+	textExtent = subjectState->textExtent;
 
 	ZeroMemory(&contentsFont, sizeof(LOGFONT));
 
@@ -505,34 +538,67 @@ void DrawingGenerator::Visit(PostingHeaderProfile* postingHeaderProfile) {
 
 	pDC->GetTextMetrics(&metric);
 
-	this->pCurrentWnd->ReleaseDC(pDC);
-
 	textHeight = metric.tmHeight;
 
-	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, imageWidth * 2);
+	fillRect.SetRect(sideMargin, sideMargin, clientRect.Width() - sideMargin, pageSideMargin + imageWidth + imageWidth / 5 * 2);
+	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, pageSideMargin + imageWidth + imageWidth / 5 * 2);
 
 	// 1. 카테고리 영역을 구한다.
-	
+	kategoriRect.SetRect(postingHeaderProfileRect.left, postingHeaderProfileRect.top + imageWidth / 5,
+		postingHeaderProfileRect.left + imageWidth / 5 * 4, postingHeaderProfileRect.top + imageWidth / 5 * 3);
 
 	// 2. 제목 영역을 구한다.
+	titleRect.SetRect(kategoriRect.right + pointedWidth, kategoriRect.top,
+		postingHeaderProfileRect.right - pointedWidth, kategoriRect.bottom);
 
 	// 3. 작성자 이미지 영역을 구한다.
+	writerImageRect.SetRect(kategoriRect.CenterPoint().x - imageWidth / 5 * 2 / 2, kategoriRect.bottom + pointedWidth,
+		kategoriRect.CenterPoint().x + imageWidth / 5 * 2 / 2, kategoriRect.bottom + pointedWidth + imageWidth / 5 * 2);
 
 	// 4. 작성자 영역을 구한다.
+	contentsWidth = textExtent->GetContentsWidth(postingHeaderProfile->GetWriter());
+	writerRect.SetRect(writerImageRect.right + pointedWidth, writerImageRect.top,
+		writerImageRect.right + pointedWidth + contentsWidth + sideMargin, writerImageRect.top + writerImageRect.Height() / 2);
 
 	// 5. 작성자 등급 영역을 구한다.
+	fontRect = writerRect;
+	fontRect.DeflateRect(1, 1);
 
-	// 6. 작성 시간 영역을 구한다.
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
 
-	// 7. 조회수 영역을 구한다.
+	contentsWidth = textExtent->GetContentsWidth(postingHeaderProfile->GetWriterGrade(), contentsFont.lfHeight, contentsFont.lfWidth, contentsFont.lfFaceName);
+	writerGradeRect.SetRect(writerRect.right + pointedWidth, writerRect.top,
+		writerRect.right + pointedWidth + contentsWidth + sideMargin, writerRect.bottom);
+
+	// 6. 작성 일자 영역을 구한다.
+	writedAtString = postingHeaderProfile->GetWritedAt();
+
+	dateString = writedAtString.substr(0, 8);
+	date = Date((char*)dateString.c_str());
+	printDateString = date.GetConvertDateFormatString('.');
+
+	contentsWidth = textExtent->GetContentsWidth(printDateString, contentsFont.lfHeight, contentsFont.lfWidth, contentsFont.lfFaceName);
+	writedDateRect.SetRect(writerRect.left, writerRect.bottom + pointedWidth,
+		writerRect.left + contentsWidth, writerRect.bottom + pointedWidth + writerRect.Height());
+
+	// 7. 작성 시간 영역을 구한다.
+	timeString = writedAtString.substr(8, writedAtString.length() - 8);
+	time = Time((char*)timeString.c_str());
+
+	timeString = time.GetConvertTimeKoreanString();
+	printTimeString = timeString.substr(5, timeString.length() - 5);
+
+	contentsWidth = textExtent->GetContentsWidth(printTimeString, contentsFont.lfHeight, contentsFont.lfWidth, contentsFont.lfFaceName);
+	writedTimeRect.SetRect(writedDateRect.right + pointedWidth, writedDateRect.top,
+		writedDateRect.right + pointedWidth + contentsWidth, writedDateRect.bottom);
+
+	// 8. 조회수 영역을 구한다.
+
 
 	// ============================================================================================================================================
 
 	// ============================================================================================================================================
 	// <2. 그릴 준비를 한다.>
-	hFont = CreateFontIndirect(&contentsFont);
-	oldFont = (HFONT)this->pDC->SelectObject(hFont);
-
 	backgroundColor = RGB(255, 255, 255);
 	textColor = this->textColor;
 
@@ -543,13 +609,66 @@ void DrawingGenerator::Visit(PostingHeaderProfile* postingHeaderProfile) {
 
 	// ============================================================================================================================================
 	// <3. 그린다.>
+	this->pDC->FillSolidRect(&fillRect, backgroundColor);
+
+	hPen = CreatePen(PS_DEFAULT, 1, this->backgroundColor);
+	oldPen = (HPEN)this->pDC->SelectObject(hPen);
+
+	x = postingHeaderProfileRect.left;
+	y = postingHeaderProfileRect.bottom;
+
+	this->pDC->MoveTo(x - lineMargin, y);
+	this->pDC->LineTo(x - lineMargin, postingHeaderProfileRect.top - lineMargin);
+	this->pDC->LineTo(postingHeaderProfileRect.right + lineMargin, postingHeaderProfileRect.top - lineMargin);
+	this->pDC->LineTo(postingHeaderProfileRect.right + lineMargin, postingHeaderProfileRect.bottom);
+
+	this->pDC->SelectObject(oldPen);
+	DeleteObject(hPen);
+
 	// 1.카테고리 텍스트를 그린다.
-	
+	fontRect = kategoriRect;
+	fontRect.DeflateRect(1, 1);
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
+
+	hFont = CreateFontIndirect(&contentsFont);
+	oldFont = (HFONT)this->pDC->SelectObject(hFont);
+
+	backgroundColor = this->backgroundColor;
+	textColor = this->textColor;
+	if (dynamic_cast<SpecialKategori*>(postingHeaderProfile->GetKategori())) {
+		backgroundColor = RGB(103, 116, 255);
+		textColor = RGB(179, 186, 255);
+	}
+
+	oldColor = this->pDC->SetBkColor(backgroundColor);
+	oldTextColor = this->pDC->SetTextColor(textColor);
+
+	// 1. 카테고리 텍스트를 그린다.
+	kategoriString = postingHeaderProfile->GetKategori()->GetName();
+	if (kategoriString == "전체공지") {
+		kategoriString = "공지";
+	}
+	this->pDC->DrawText(kategoriString.c_str(), &kategoriRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+	this->pDC->SetBkColor(oldColor);
+	this->pDC->SetTextColor(oldTextColor);
+
+	this->pDC->SelectObject(oldFont);
+	DeleteObject(hFont);
 
 	// 2. 제목 텍스트를 그린다.
+	fontRect = titleRect;
+	fontRect.DeflateRect(1, 1);
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
+
+	hFont = CreateFontIndirect(&contentsFont);
+	oldFont = (HFONT)this->pDC->SelectObject(hFont);
+	this->pDC->DrawText(postingHeaderProfile->GetTitle().c_str(), &titleRect, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+
+	this->pDC->SelectObject(oldFont);
+	DeleteObject(hFont);
 
 	// 3. 작성자 이미지를 그린다.
-	this->pDC->FillSolidRect(&postingHeaderProfileRect, backgroundColor);
 	fileName = postingHeaderProfile->GetAttachmentImageUrl();
 
 	fileName_w.assign(fileName.begin(), fileName.end());
@@ -583,17 +702,60 @@ void DrawingGenerator::Visit(PostingHeaderProfile* postingHeaderProfile) {
 	GdiplusShutdown(gdiplusToken);
 
 	// 4. 작성자 텍스트를 그린다.
+	fontRect = writerRect;
+	fontRect.DeflateRect(1, 1);
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
+
+	hFont = CreateFontIndirect(&contentsFont);
+	oldFont = (HFONT)this->pDC->SelectObject(hFont);
+	this->pDC->DrawText(postingHeaderProfile->GetWriter().c_str(), &writerRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+	this->pDC->SelectObject(oldFont);
+	DeleteObject(hFont);
 
 	// 5. 작성자 등급 텍스트를 그린다.
+	fontRect = writerGradeRect;
+	fontRect.DeflateRect(1, 1);
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
 
-	// 6. 작성 시간 텍스트를 그린다.
+	hFont = CreateFontIndirect(&contentsFont);
+	oldFont = (HFONT)this->pDC->SelectObject(hFont);
+	this->pDC->DrawText(postingHeaderProfile->GetWriterGrade().c_str(), &writerGradeRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-	// 7. 조회수 텍스트를 그린다.
+	this->pDC->SelectObject(oldFont);
+	DeleteObject(hFont);
+
+	// 6. 작성 일자 텍스트를 그린다.
+	fontRect = writedDateRect;
+	fontRect.DeflateRect(1, 1);
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
+
+	hFont = CreateFontIndirect(&contentsFont);
+	oldFont = (HFONT)this->pDC->SelectObject(hFont);
+	this->pDC->DrawText(printDateString.c_str(), &writedDateRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+	this->pDC->SelectObject(oldFont);
+	DeleteObject(hFont);
+
+	// 7. 작성 시간 텍스트를 그린다.
+	fontRect = writedTimeRect;
+	fontRect.DeflateRect(1, 1);
+	contentsFont = FindFontInRect(pDC, fontRect, DEFAULT_FACENAME, 9);
+
+	hFont = CreateFontIndirect(&contentsFont);
+	oldFont = (HFONT)this->pDC->SelectObject(hFont);
+	this->pDC->DrawText(printTimeString.c_str(), &writedTimeRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+	this->pDC->SelectObject(oldFont);
+	DeleteObject(hFont);
+
+	// 8. 조회수 텍스트를 그린다.
 
 	
 	//this->pDC->DrawText(contents.c_str(), &postingHeaderProfileRect, DT_EDITCONTROL | DT_WORDBREAK);
 
 	// ============================================================================================================================================
+	this->pCurrentWnd->ReleaseDC(pDC);
 
 	this->pDC->SetBkColor(oldColor);
 	this->pDC->SetTextColor(oldTextColor);
@@ -604,6 +766,7 @@ void DrawingGenerator::Visit(PostingHeaderProfile* postingHeaderProfile) {
 
 void DrawingGenerator::Visit(PostingBodyProfile* postingBodyProfile) {
 	CRect clientRect;
+	CRect fillRect;
 	CRect postingHeaderProfileRect;
 	CRect postingBodyProfileRect;
 	
@@ -611,22 +774,36 @@ void DrawingGenerator::Visit(PostingBodyProfile* postingBodyProfile) {
 
 	LOGFONT contentsFont;
 
+	HPEN hPen;
+	HPEN oldPen;
+
 	HFONT hFont;
 	HFONT oldFont;
 
 	TEXTMETRIC metric;
 
 	string contents;
+	string wrappingContents;
 
 	Long systemWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	Long imageWidth = systemWidth / 22;
 	Long sideMargin = imageWidth / 3;
 	Long pageSideMargin = sideMargin * 2;
 	Long pointedWidth = sideMargin / 2;
+	Long lineMargin = sideMargin / 4;
 	Long textHeight;
+	Long wrappingContentsLength;;
 
+	COLORREF backgroundColor;
+	COLORREF textColor;
 	COLORREF oldColor;
 	COLORREF oldTextColor;
+
+	SubjectState* subjectState;
+	TextExtent* textExtent;
+
+	subjectState = dynamic_cast<ItemSubject*>(this->pCurrentWnd)->GetSubjectState();//
+	textExtent = subjectState->textExtent;
 
 	ZeroMemory(&contentsFont, sizeof(LOGFONT));
 
@@ -648,10 +825,16 @@ void DrawingGenerator::Visit(PostingBodyProfile* postingBodyProfile) {
 
 	textHeight = metric.tmHeight;
 
-	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, imageWidth * 2);
+	contents = postingBodyProfile->GetContents();
+	textExtent->WrappingContents(contents, clientRect.Width() - pageSideMargin * 2, &wrappingContents, &wrappingContentsLength);
 
-	postingBodyProfileRect.SetRect(pageSideMargin, postingHeaderProfileRect.top + pageSideMargin * 2,
-		clientRect.Width() - pageSideMargin, (postingHeaderProfileRect.top + pageSideMargin * 2) + DEFAULT_POSTING_ROWLENGTH * textHeight);
+	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, pageSideMargin + imageWidth + imageWidth / 5 * 2);
+
+	fillRect.SetRect(sideMargin, postingHeaderProfileRect.bottom,
+		clientRect.Width() - sideMargin, postingHeaderProfileRect.bottom + (DEFAULT_POSTING_ROWLENGTH + wrappingContentsLength) * textHeight);
+
+	postingBodyProfileRect.SetRect(pageSideMargin, postingHeaderProfileRect.bottom,
+		clientRect.Width() - pageSideMargin, postingHeaderProfileRect.bottom + (DEFAULT_POSTING_ROWLENGTH + wrappingContentsLength) * textHeight);
 
 	// ============================================================================================================================================
 
@@ -670,9 +853,22 @@ void DrawingGenerator::Visit(PostingBodyProfile* postingBodyProfile) {
 
 	// ============================================================================================================================================
 	// <3. 그린다.>
-	this->pDC->FillSolidRect(&postingBodyProfileRect, backgroundColor);
+	this->pDC->FillSolidRect(&fillRect, backgroundColor);
 
-	contents = postingBodyProfile->GetContents();
+	hPen = CreatePen(PS_DEFAULT, 1, this->backgroundColor);
+	oldPen = (HPEN)this->pDC->SelectObject(hPen);
+
+	x = postingBodyProfileRect.left;
+	y = postingBodyProfileRect.bottom;
+
+	this->pDC->MoveTo(x - lineMargin, y);
+	this->pDC->LineTo(x - lineMargin, postingBodyProfileRect.top - lineMargin);
+	this->pDC->LineTo(postingBodyProfileRect.right + lineMargin, postingBodyProfileRect.top - lineMargin);
+	this->pDC->LineTo(postingBodyProfileRect.right + lineMargin, postingBodyProfileRect.bottom);
+
+	this->pDC->SelectObject(oldPen);
+	DeleteObject(hPen);
+
 	this->pDC->DrawText(contents.c_str(), &postingBodyProfileRect, DT_EDITCONTROL | DT_WORDBREAK);
 
 	// ============================================================================================================================================
@@ -731,7 +927,7 @@ void DrawingGenerator::Visit(PostingCommentProfile* postingCommentProfile) {
 
 	textHeight = metric.tmHeight;
 
-	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, imageWidth * 2);
+	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, pageSideMargin + imageWidth * 3);
 
 	postingBodyProfileRect.SetRect(pageSideMargin, postingHeaderProfileRect.top + pageSideMargin * 2,
 		clientRect.Width() - pageSideMargin, (postingHeaderProfileRect.top + pageSideMargin * 2) + DEFAULT_POSTING_ROWLENGTH * textHeight);
@@ -1422,7 +1618,7 @@ void DrawingGenerator::Visit(FriendProfile* friendProfile) {
 
 		// 3. 일자가 같으면 시간으로 출력 문자열을 만든다.
 		if (itString == todayString) {
-			itString = Time((char*)formattingDateTime.substr(8, formattingDateTime.length() - 8).c_str()).GetTimeString();
+			itString = Time((char*)formattingDateTime.substr(8, formattingDateTime.length() - 8).c_str()).GetConvertTimeKoreanString();
 			printingString = itString;
 		}
 		// 4. 일자가 하루 전이면 "어제"로 출력 문자열을 만든다.

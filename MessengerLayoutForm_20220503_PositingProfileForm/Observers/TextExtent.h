@@ -21,6 +21,7 @@ public:
 	Long GetContentsRowLength(string sourceContents);
 	Long GetContentsRowLength(string sourceContents, Long totalWidth);
 	Long GetContentsWidth(string contents);
+	Long GetContentsWidth(string contents, Long lfHeight, Long lfWidth, string lfFaceName);
 	void WrappingContents(string sourceContents, Long totalWidth, string* wrappingContents, Long* wrappingCount = 0, Long* longestWidth = 0);
 
 private:

@@ -65,7 +65,7 @@ Time Time::GetNowTime() {
 	return nowTime_;
 }
 
-string Time::GetTimeString() {
+string Time::GetConvertTimeKoreanString() {
 	char buffer[32];
 	char tmp[5];
 	// ¿ÀÀü 00:00
@@ -78,5 +78,11 @@ string Time::GetTimeString() {
 
 	sprintf_s(buffer, 32, "%s %02d:%02d", tmp, this->hour, this->minute);
 
+	return buffer;
+}
+
+string Time::GetConvertTimeFormatString(char insertCharacter) {
+	char buffer[32];
+	sprintf_s(buffer, 32, "%02d%c%02d%c%02d", this->hour, insertCharacter, this->minute, insertCharacter, this->second);
 	return buffer;
 }

@@ -14,6 +14,7 @@
 
 
 //#include "../Profiles/"
+#include "../Profiles/Kategori.h"
 #include "../Profiles/PostingHeaderProfile.h"
 #include "../Profiles/PostingBodyProfile.h"
 #include "../Profiles/PostingCommentProfile.h"
@@ -229,6 +230,9 @@ void DocumentProfileCompileMode::Compile() {
 
 		// 1.2. 게시글 헤더가 화면 안에 있으면 만든다.
 		postingHeaderProfile = parser.ParseByPostingHeaderProfile(&scanner);
+		if (onIsSpecialPosting == true) {
+			postingHeaderProfile->Repair(Kategori::SPECIAL);
+		}
 	}
 
 	// 3. 화면 영역 안에 본문 영역이 있으면
@@ -250,7 +254,7 @@ void DocumentProfileCompileMode::Compile() {
 		scanner.Read(pathFileName.c_str(), ListToken::LENGTH);
 
 		// 4.2. 게시글 댓글이 화면 안에 있으면 만든다.
-		postingCommentProfile = parser.ParseByPostingCommentProfile(&scanner);
+		//postingCommentProfile = parser.ParseByPostingCommentProfile(&scanner);
 	}
 	
 	// 5. 댓글 편집기 윈도우가 화면 안에 있으면 만든다.

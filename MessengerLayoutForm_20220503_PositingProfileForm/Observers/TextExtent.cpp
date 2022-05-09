@@ -318,6 +318,72 @@ Long TextExtent::GetContentsWidth(string contents) {
 	return longestWidth;
 }
 
+Long TextExtent::GetContentsWidth(string contents, Long lfHeight, Long lfWidth, string lfFaceName) {
+	Long longestWidth = 0;
+	Long totalWidth = 0;
+	Long width;
+
+	CDC* dc;
+	HFONT hFont;
+	HFONT oldFont;
+	LOGFONT logFont;
+
+	CSize cSize;
+
+	string str;
+
+	char text[3] = { '\0', };
+
+	size_t i = 0;
+
+	bool isFinded = false;
+
+	dc = this->pCurrentWnd->GetDC();
+
+	ZeroMemory(&logFont, sizeof(LOGFONT));
+	logFont.lfHeight = lfHeight;
+	logFont.lfWidth = lfWidth;
+	strcpy_s(logFont.lfFaceName, lfFaceName.c_str());
+
+	hFont = CreateFontIndirect(&logFont);
+	oldFont = (HFONT)SelectObject(*dc, hFont);
+	while (i < contents.length()) {
+		text[0] = contents[i];
+		if (text[0] & 0x80) {
+			text[1] = contents[i + 1];
+			i++;
+		}
+
+		str = text;
+		if (!(text[0] & 0x80)) {
+			width = this->widths[(int)text[0]];
+		}
+		else if ((str >= "ㄱ" && str <= "ㅣ") || (str >= "가" && str <= "\uD7AF")) {
+			width = this->widths[ASCII - 1];
+		}
+		else {
+			cSize = dc->GetTextExtent(text);
+			width = cSize.cx;
+		}
+		totalWidth += width;
+		if (text[0] == '\r' || text[0] == '\n' || i + 1 == contents.length()) {
+			if (longestWidth < totalWidth) {
+				longestWidth = totalWidth;
+			}
+			totalWidth = 0;
+		}
+
+		i++;
+	}
+
+	SelectObject(*dc, oldFont);
+	DeleteObject(hFont);
+
+	this->pCurrentWnd->ReleaseDC(dc);
+
+	return longestWidth;
+}
+
 void TextExtent::WrappingContents(string sourceContents, Long totalWidth, string* wrappingContents, Long* wrappingCount, Long* longestWidth) {
 	string textString;
 
@@ -376,7 +442,12 @@ void TextExtent::WrappingContents(string sourceContents, Long totalWidth, string
 		// 3. 총 너비를 구한다.
 		currentWidth += width;
 
-		// 4. 말풍선 너비보다 총 너비가 크면 개행문자를 추가한다.
+		// 4. 글자가 개행문자이면 줄 수를 센다.
+		if (textString == "\n" && wrappingCount != 0) {
+			(*wrappingCount)++;
+		}
+
+		// 5. 말풍선 너비보다 총 너비가 크면 개행문자를 추가한다.
 		if (currentWidth > totalWidth) {
 			(*wrappingContents) += '\r';
 			if (wrappingCount != 0) {
@@ -390,7 +461,7 @@ void TextExtent::WrappingContents(string sourceContents, Long totalWidth, string
 		if (longestWidth != 0 && *longestWidth < currentWidth) {
 			*longestWidth = currentWidth;
 		}
-		// 5. 따온 글자를 추가한다.
+		// 6. 따온 글자를 추가한다.
 		(*wrappingContents) += textString;
 
 		i++;

@@ -15,7 +15,8 @@ public:
 
 	static Time GetNowTime();
 
-	string GetTimeString();
+	string GetConvertTimeKoreanString();
+	string GetConvertTimeFormatString(char insertCharacter);
 
 	int GetHour() const;
 	int GetMinute() const;
