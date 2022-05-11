@@ -54,12 +54,29 @@ namespace parkcom {
 		virtual void Accept(DrawingGenerator* drawingGenerator);
 		virtual Profile* Clone();
 
+		string GetAttachmentImageUrl();
+		string GetWriter();
+		string GetComment();
+		string GetWritedAt();
+
 	private:
 		string attachmentImageUrl;
 		string writer;
 		string comment;
 		string writedAt;
 	};
+	inline string PostingCommentProfile::GetAttachmentImageUrl() {
+		return this->attachmentImageUrl;
+	}
+	inline string PostingCommentProfile::GetWriter() {
+		return this->writer;
+	}
+	inline string PostingCommentProfile::GetComment() {
+		return this->comment;
+	}
+	inline string PostingCommentProfile::GetWritedAt() {
+		return this->writedAt;
+	}
 }
 
 #endif // _POSTINGCOMMENTPROFILE_H

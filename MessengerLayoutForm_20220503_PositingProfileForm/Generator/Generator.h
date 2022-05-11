@@ -10,8 +10,6 @@ namespace parkcom {
 	class PostingHeaderProfile;
 	class PostingBodyProfile;
 	class PostingCommentProfile;
-	class NormalKategori;
-	class SpecialKategori;
 	class PersonalProfile;
 	class FriendProfile;
 	class ChatProfile;
@@ -36,9 +34,6 @@ namespace parkcom {
 		virtual void Visit(PostingHeaderProfile* postingHeaderProfile) {  }
 		virtual void Visit(PostingBodyProfile* postingBodyProfile) {  }
 		virtual void Visit(PostingCommentProfile* postingCommentProfile) {  }
-
-		virtual void Visit(NormalKategori* normalKategori) {  }
-		virtual void Visit(SpecialKategori* specialKategori) {  }
 
 		virtual void Visit(PersonalProfile* personalProfile) {  }
 		virtual void Visit(FriendProfile* friebdProfile) {  }

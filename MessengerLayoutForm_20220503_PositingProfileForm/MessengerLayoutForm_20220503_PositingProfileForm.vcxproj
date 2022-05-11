@@ -186,6 +186,7 @@
     <ClCompile Include="Profiles\ChatProfile.cpp" />
     <ClCompile Include="Profiles\ChatProfileProcessor.cpp" />
     <ClCompile Include="Profiles\ChatProfileState.cpp" />
+    <ClCompile Include="Profiles\CommentBodysState.cpp" />
     <ClCompile Include="Profiles\FriendBodysState.cpp" />
     <ClCompile Include="Profiles\FriendProfile.cpp" />
     <ClCompile Include="Profiles\Kategori.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="Profiles\ChatProfile.h" />
     <ClInclude Include="Profiles\ChatProfileProcessor.h" />
     <ClInclude Include="Profiles\ChatProfileState.h" />
+    <ClInclude Include="Profiles\CommentBodysState.h" />
     <ClInclude Include="Profiles\FriendBodysState.h" />
     <ClInclude Include="Profiles\FriendProfile.h" />
     <ClInclude Include="Profiles\Kategori.h" />

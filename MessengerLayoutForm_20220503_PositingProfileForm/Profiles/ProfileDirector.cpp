@@ -31,6 +31,15 @@ void ProfileDirector::ChangedProfileLength(Long profileLength) {
 	}
 }
 
+void ProfileDirector::ChangedDocumentRowLength(Long documentRowLength) {
+	ProfileForm* profileForm;
+
+	if (dynamic_cast<ProfileForm*>(this->pCurrentWnd)) {
+		profileForm = dynamic_cast<ProfileForm*>(this->pCurrentWnd);
+		profileForm->profileStyle->SetDocumentRowLength(documentRowLength);
+	}
+}
+
 void ProfileDirector::ChangedBaseName(char(*baseName)) {
 	MessengerLayoutForm* messengerLayoutForm;
 	CardListForm* cardListForm;
@@ -231,6 +240,14 @@ Long ProfileDirector::GetProfileLength() {
 		profileLength = dynamic_cast<ProfileForm*>(this->pCurrentWnd)->m_ProfileLength;
 	}
 	return profileLength;
+}
+
+Long ProfileDirector::GetDocumentRowLength() {
+	Long documentRowLength = 0;
+	if (dynamic_cast<ProfileForm*>(this->pCurrentWnd)) {
+		documentRowLength = dynamic_cast<ProfileForm*>(this->pCurrentWnd)->profileStyle->GetDocumentRowLength();
+	}
+	return documentRowLength;
 }
 
 Long ProfileDirector::GetBaseIndex() {

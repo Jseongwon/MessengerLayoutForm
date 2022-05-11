@@ -14,7 +14,10 @@ namespace parkcom {
 
 		virtual void OnDraw(CDC* pDC) {  }
 		virtual void SpecialPosting(bool isSpecialPosting) {  }
+		virtual void SetDocumentRowLength(LONG documentRowLength) {  }
+
 		virtual bool IsSpecialPosting() { return false; }
+		virtual LONG GetDocumentRowLength() { return 0; }
 
 	protected:
 		CWnd* pCurrentWnd;

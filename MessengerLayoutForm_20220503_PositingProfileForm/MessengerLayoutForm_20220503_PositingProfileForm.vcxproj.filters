@@ -207,6 +207,9 @@
     <ClCompile Include="Profiles\PostingCommentProfile.cpp">
       <Filter>Profiles</Filter>
     </ClCompile>
+    <ClCompile Include="Profiles\CommentBodysState.cpp">
+      <Filter>Profiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generator\DrawingGenerator.h">
@@ -422,6 +425,9 @@
       <Filter>Profiles</Filter>
     </ClInclude>
     <ClInclude Include="Profiles\PostingCommentProfile.h">
+      <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiles\CommentBodysState.h">
       <Filter>Profiles</Filter>
     </ClInclude>
   </ItemGroup>

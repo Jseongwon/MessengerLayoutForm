@@ -6,7 +6,7 @@ namespace parkcom {
 	class Bodys;
 	class BodysState {
 	public:
-		enum { POSTING = 0, FRIEND = 1, CHAT = 2 };
+		enum { POSTING = 0, FRIEND = 1, CHAT = 2, COMMENT = 3 };
 	public:
 		BodysState(Bodys* bodys = 0);
 		virtual ~BodysState() = 0;

@@ -9,6 +9,7 @@
 #include "PostingBodysState.h"
 #include "FriendBodysState.h"
 #include "ChatBodysState.h"
+#include "CommentBodysState.h"
 #include "../Generator/DrawingGenerator.h"
 using namespace parkcom;
 
@@ -28,6 +29,9 @@ Bodys::Bodys(const Bodys& source)
 	}
 	else if (dynamic_cast<ChatBodysState*>(source.bodysState)) {
 		this->bodysState = new ChatBodysState(this);
+	}
+	else if (dynamic_cast<CommentBodysState*>(source.bodysState)) {
+		this->bodysState = new CommentBodysState(this);
 	}
 }
 
@@ -51,6 +55,9 @@ Bodys& Bodys::operator=(const Bodys& source) {
 	}
 	else if (dynamic_cast<ChatBodysState*>(source.bodysState)) {
 		this->bodysState = new ChatBodysState(this);
+	}
+	else if (dynamic_cast<CommentBodysState*>(source.bodysState)) {
+		this->bodysState = new CommentBodysState(this);
 	}
 
 	return *this;
@@ -78,6 +85,9 @@ void Bodys::Repair(int bodysState) {
 	else if (bodysState == BodysState::CHAT) {
 		this->bodysState = new ChatBodysState(this);
 	}
+	else if (bodysState == BodysState::COMMENT) {
+		this->bodysState = new CommentBodysState(this);
+	}
 }
 
 int Bodys::GetBodysState() {
@@ -90,6 +100,9 @@ int Bodys::GetBodysState() {
 	}
 	else if (dynamic_cast<ChatBodysState*>(this->bodysState)) {
 		bodysState = BodysState::CHAT;
+	}
+	else if (dynamic_cast<CommentBodysState*>(this->bodysState)) {
+		bodysState = BodysState::COMMENT;
 	}
 	return bodysState;
 }

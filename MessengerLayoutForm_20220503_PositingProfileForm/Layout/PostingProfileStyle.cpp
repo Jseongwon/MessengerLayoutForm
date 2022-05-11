@@ -14,7 +14,9 @@ using namespace parkcom;
 
 PostingProfileStyle::PostingProfileStyle(CWnd* pCurrentWnd) {
 	this->pCurrentWnd = pCurrentWnd;
+	this->documentRowLength = 0;
 	this->isSpecialPosting = false;
+	this->onIsDrawing = true;
 }
 
 PostingProfileStyle::~PostingProfileStyle() {
@@ -53,7 +55,8 @@ void PostingProfileStyle::OnDraw(CDC* pDC) {
 
 	profileCompiler = ProfileCompiler(this->pCurrentWnd, &drawingGenerator);
 	profileCompiler.Repair(ProfileCompileMode::DOCUMENTPROFILE);
-	if (strcmp(((ProfileForm*)this->pCurrentWnd)->baseName, "") != 0 && ((ProfileForm*)this->pCurrentWnd)->baseIndex >= 0) {
+	if (strcmp(((ProfileForm*)this->pCurrentWnd)->baseName, "") != 0 && ((ProfileForm*)this->pCurrentWnd)->baseIndex >= 0 && this->onIsDrawing == true) {
+		this->onIsDrawing = false;
 		profileCompiler.Compile();
 	}
 
@@ -62,4 +65,6 @@ void PostingProfileStyle::OnDraw(CDC* pDC) {
 	memoryDC.SelectObject(oldBitmap);
 	::DeleteObject(hBitmap);
 	memoryDC.DeleteDC();
+
+	this->onIsDrawing = true;
 }

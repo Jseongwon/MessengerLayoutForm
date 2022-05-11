@@ -21,12 +21,26 @@ namespace parkcom {
 		bool IsNext() const;
 		bool IsEOF() const;
 
+		Long GetCapacity();
+		Long GetLength();
+		Long GetCurrent();
+
 	protected:
 		Array<ListToken> tokenTable;
 		Long capacity;
 		Long length;
 		Long current;
 	};
+
+	inline Long Scanner::GetCapacity() {
+		return this->capacity;
+	}
+	inline Long Scanner::GetLength() {
+		return this->length;
+	}
+	inline Long Scanner::GetCurrent() {
+		return this->current;
+	}
 
 	inline bool Scanner::IsTokenScan(Long rowCurrent, Long tokenIndex) {
 		return this->tokenTable.GetAt(rowCurrent).IsTokenScan(tokenIndex) && this->current >= 0;

@@ -32,9 +32,11 @@
 #include "../Observers/Scrolls.h"
 #include "../Utilities/Date.h"
 #define PARKCOM_POSTING_PATH "C:\\Users\\jeong\\AppData\\Local\\Parkcom\\ParkcomMessenger\\Profiles\\PostingProfiles"
+#define DEFAULT_HEADER_ROWLENGTH	9
 #define DEFAULT_POSTING_ROWLENGTH	7
 #define DEFAULT_COMMENT_ROWLENGTH	5
 #define DEFAULT_EDITOR_ROWLENGTH	5
+#define DEFAULT_CONTENTS_POINT		9
 #define DEFAULT_FACENAME "맑은 고딕"
 using namespace parkcom;
 
@@ -47,6 +49,8 @@ DocumentProfileCompileMode::~DocumentProfileCompileMode() {
 }
 
 void DocumentProfileCompileMode::Compile() {
+	Profile* commentBodys;
+
 	PostingHeaderProfile* postingHeaderProfile = 0;
 	PostingBodyProfile* postingBodyProfile = 0;
 	PostingCommentProfile* postingCommentProfile = 0;
@@ -87,12 +91,14 @@ void DocumentProfileCompileMode::Compile() {
 	string fileName;
 	string pathFileName;
 
-	string(*chatProfileInfos) = 0;		// 대화 이력의 필드 내용들
-
-	UserProfile*(*userProfiles) = 0;	// 대화방 참가자의 이력
+	string(*postingProfileInfos) = 0;	// 대화 이력의 필드 내용들
 
 	Date date;
 
+	Long postingProfileInfoLength;
+	Long wrappingContentsLength;
+	Long prevDocumentRowLength;
+	Long documentRowLength = 0;
 	Long systemWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	Long imageWidth = systemWidth / 22;
 	Long sideMargin = imageWidth / 3;
@@ -105,18 +111,14 @@ void DocumentProfileCompileMode::Compile() {
 	Long scrollMax = 0;
 	Long scrollPage = 0;
 	Long scrollCurrent = 0;
-	Long currentMax;
 	Long totalWidth;					// 대화내역의 대화내용이 그려질 영역의 너비
 	Long i = 0;
-	Long j;
-
-	size_t strOffset;
-	size_t strIndex;
 
 	bool onIsReSizedTheScroll = false;
 	bool onIsSpecialPosting;
 
 	Subject* subject;
+	SubjectState* subjectState;
 	TextExtent* textExtent;
 	ItemScrollController* itemScrollController;
 	Scroll* verticalScroll;
@@ -138,13 +140,15 @@ void DocumentProfileCompileMode::Compile() {
 
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	댓글 달기
-
-	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	(CommentProfile)
 	달린 댓글들
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	댓글 달기
 	====================================================================================================================================================================
 	*/
+
+	subjectState = dynamic_cast<ItemSubject*>(this->profileCompiler->pCurrentWnd)->GetSubjectState();//
+	textExtent = subjectState->textExtent;
 
 	ZeroMemory(&nicknameFont, sizeof(LOGFONT));
 	ZeroMemory(&contentsFont, sizeof(LOGFONT));
@@ -157,10 +161,10 @@ void DocumentProfileCompileMode::Compile() {
 	nicknameFont.lfHeight = -MulDiv(10, pDC->GetDeviceCaps(LOGPIXELSY), 72);
 	strcpy_s(nicknameFont.lfFaceName, DEFAULT_FACENAME);
 
-	contentsFont.lfHeight = -MulDiv(9, pDC->GetDeviceCaps(LOGPIXELSY), 72);
+	contentsFont.lfHeight = -MulDiv(DEFAULT_CONTENTS_POINT, pDC->GetDeviceCaps(LOGPIXELSY), 72);
 	strcpy_s(contentsFont.lfFaceName, DEFAULT_FACENAME);
 
-	hFont = CreateFontIndirect(&nicknameFont);
+	hFont = CreateFontIndirect(&contentsFont);
 	oldFont = (HFONT)pDC->SelectObject(hFont);
 
 	pDC->GetTextMetrics(&metric);
@@ -168,17 +172,6 @@ void DocumentProfileCompileMode::Compile() {
 	this->profileCompiler->pCurrentWnd->ReleaseDC(pDC);
 
 	textHeight = metric.tmHeight;
-
-	postingHeaderProfileRect.SetRect(pageSideMargin, pageSideMargin, clientRect.Width() - pageSideMargin, imageWidth * 2);
-
-	postingBodyProfileRect.SetRect(pageSideMargin, postingHeaderProfileRect.top + pageSideMargin * 2,
-		clientRect.Width() - pageSideMargin, (postingHeaderProfileRect.top + pageSideMargin * 2) + DEFAULT_POSTING_ROWLENGTH * textHeight);
-
-	postingCommentProfileRect.SetRect(pageSideMargin, postingBodyProfileRect.top + pageSideMargin * 2,
-		clientRect.Width() - pageSideMargin, (postingBodyProfileRect.top + pageSideMargin * 2) + DEFAULT_EDITOR_ROWLENGTH * textHeight);
-
-	postingCommentEditRect.SetRect(pageSideMargin, postingCommentProfileRect.top + pageSideMargin * 2,
-		clientRect.Width() - pageSideMargin, (postingCommentProfileRect.top + pageSideMargin * 2) + DEFAULT_EDITOR_ROWLENGTH * textHeight);
 
 	// 2. 스크롤 정보를 읽는다.
 	subject = dynamic_cast<Subject*>(this->profileCompiler->pCurrentWnd);
@@ -196,10 +189,6 @@ void DocumentProfileCompileMode::Compile() {
 
 	// + 이전 화면 영역을 읽어온다.
 	prevClientRect = ((ItemState*)subject->GetSubjectState())->GetPrevRect();
-	// 화면 크기가 달라질 경우 현재 위치를 마지막 위치로 조정한다.
-	if (clientRect.Height() != prevClientRect.Height()) {
-		scrollCurrent = scrollMax - scrollPage;
-	}
 
 	// + 화면 영역을 스크롤 위치로 이동시킨다.
 	clientRect.MoveToY(-scrollCurrent);
@@ -229,8 +218,23 @@ void DocumentProfileCompileMode::Compile() {
 		scanner.Read(pathFileName.c_str(), ListToken::LENGTH);
 
 		// 1.2. 게시글 헤더가 화면 안에 있으면 만든다.
-		postingHeaderProfile = parser.ParseByPostingHeaderProfile(&scanner);
-		if (onIsSpecialPosting == true) {
+		if (!scanner.IsEOF()) {
+			postingHeaderProfile = parser.ParseByPostingHeaderProfile(&scanner);
+
+			scanner.Scan(0, &postingProfileInfos, &postingProfileInfoLength);
+
+			wrappingContentsLength = textExtent->GetContentsRowLength(postingProfileInfos[1], clientRect.Width() - pageSideMargin * 2);
+
+			// 다시 구하기.
+			changedScrollMax += (DEFAULT_HEADER_ROWLENGTH + wrappingContentsLength) * textHeight;
+
+			documentRowLength = DEFAULT_HEADER_ROWLENGTH + wrappingContentsLength;
+
+			if (postingProfileInfos != 0) {
+				delete[] postingProfileInfos;
+			}
+		}
+		if (onIsSpecialPosting == true && postingHeaderProfile != 0) {
 			postingHeaderProfile->Repair(Kategori::SPECIAL);
 		}
 	}
@@ -244,17 +248,54 @@ void DocumentProfileCompileMode::Compile() {
 		// + 본문 내용의 줄 수 를 세서 영역을 다시 구해야한다.
 
 		// 3.2. 게시글 본문이 화면 안에 있으면 만든다.
-		postingBodyProfile = parser.ParseByPostingBodyProfile(&scanner);
+		if (!scanner.IsEOF()) {
+			postingBodyProfile = parser.ParseByPostingBodyProfile(&scanner);
+
+			scanner.Scan(0, &postingProfileInfos, &postingProfileInfoLength);
+
+			wrappingContentsLength = textExtent->GetContentsRowLength(postingProfileInfos[0], clientRect.Width() - pageSideMargin * 2);
+
+			changedScrollMax += (DEFAULT_POSTING_ROWLENGTH + wrappingContentsLength) * textHeight;
+
+			documentRowLength += DEFAULT_POSTING_ROWLENGTH + wrappingContentsLength;
+
+			profileDirector.ChangedProfileLength(wrappingContentsLength);
+
+			if (postingProfileInfos != 0) {
+				delete[] postingProfileInfos;
+			}
+		}
 	}
 
-	// 4. 화면 영역 안에 댓글 영역이 있으면
+	// 4. 화면 영역 안에 댓글 영역이 있으면 ! 반복구조.
+	commentBodys = profileFactory.CreateBodys();
+	commentBodys->Repair(BodysState::COMMENT);
+
 	if (clientRect.top < postingCommentProfileRect.bottom || clientRect.bottom > postingCommentProfileRect.top) {
 		// 4.1. 스캐너로 게시글 댓글을 읽는다.
 		pathFileName = path + "\\PostingCommentProfile_" + (LPCTSTR)(baseIndexString + ".txt");
 		scanner.Read(pathFileName.c_str(), ListToken::LENGTH);
 
 		// 4.2. 게시글 댓글이 화면 안에 있으면 만든다.
-		//postingCommentProfile = parser.ParseByPostingCommentProfile(&scanner);
+		while (i < scanner.GetLength() && !scanner.IsEOF()) {
+			postingCommentProfile = parser.ParseByPostingCommentProfile(&scanner);
+
+			scanner.Scan(i, &postingProfileInfos, &postingProfileInfoLength);
+
+			wrappingContentsLength = textExtent->GetContentsRowLength(postingProfileInfos[2], clientRect.Width() - pageSideMargin * 2);
+
+			changedScrollMax += (DEFAULT_COMMENT_ROWLENGTH + wrappingContentsLength) * textHeight;
+
+			documentRowLength += DEFAULT_COMMENT_ROWLENGTH + wrappingContentsLength;
+
+			commentBodys->Add(postingCommentProfile);
+
+			if (postingProfileInfos != 0) {
+				delete[] postingProfileInfos;
+			}
+
+			i++;
+		}
 	}
 	
 	// 5. 댓글 편집기 윈도우가 화면 안에 있으면 만든다.
@@ -262,11 +303,18 @@ void DocumentProfileCompileMode::Compile() {
 
 	}
 
+	// 화면 크기가 달라질 경우 현재 위치를 마지막 위치로 조정한다.
+	prevDocumentRowLength = profileDirector.GetDocumentRowLength();
+	profileDirector.ChangedDocumentRowLength(documentRowLength);
+
+	// 1. 스크롤 위치가 0일때 (처음 시작하거나 추가로 화면 영역이 필요할 때), 화면의 크기가 변경되었을 때, 대화내역의 개수가 변경되었을 때
+	profileDirector.ChangedScrollSize(clientRect.Width(), changedScrollMax);
 
 	// ============================================================================================================================================
 
 	// 4. 준비된 게시글 이력들을 그린다.
 	// ============================================================================================================================================
+	this->profileCompiler->drawingGenerator->SetPosition(0, -scrollCurrent);
 	if (postingHeaderProfile != 0) {
 		postingHeaderProfile->Accept(this->profileCompiler->drawingGenerator);
 		delete postingHeaderProfile;
@@ -277,9 +325,9 @@ void DocumentProfileCompileMode::Compile() {
 		delete postingBodyProfile;
 	}
 
-	if (postingCommentProfile != 0) {
-		postingCommentProfile->Accept(this->profileCompiler->drawingGenerator);
-		delete postingCommentProfile;
+	if (commentBodys != 0) {
+		commentBodys->Accept(this->profileCompiler->drawingGenerator);
+		delete commentBodys;
 	}
 
 	// ============================================================================================================================================

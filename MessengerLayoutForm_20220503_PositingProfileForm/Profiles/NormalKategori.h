@@ -12,7 +12,6 @@ namespace parkcom {
 		virtual ~NormalKategori();
 		NormalKategori& operator=(const NormalKategori& source);
 
-		virtual void Accept(DrawingGenerator* drawingGenerator);
 		virtual Kategori* Clone();
 	};
 }

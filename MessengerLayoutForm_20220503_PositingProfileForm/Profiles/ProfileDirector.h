@@ -14,6 +14,7 @@ namespace parkcom {
 		~ProfileDirector();
 
 		void ChangedProfileLength(Long profileLength);
+		void ChangedDocumentRowLength(Long documentRowLength);
 		void ChangedBaseName(char(*baseName));
 		void ChangedBaseIndex(Long baseIndex);
 		void ChangedScrollInfo(int nSBCode, Long minimum, Long maximum, Long lineLength, Long pageLength, Long position, bool bRedraw = true);
@@ -22,6 +23,7 @@ namespace parkcom {
 
 		string GetBaseName();
 		Long GetProfileLength();
+		Long GetDocumentRowLength();
 		Long GetBaseIndex();
 		
 		bool IsSpecialPosting();

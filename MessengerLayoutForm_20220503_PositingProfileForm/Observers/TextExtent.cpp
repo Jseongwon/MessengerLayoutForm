@@ -235,7 +235,12 @@ Long TextExtent::GetContentsRowLength(string sourceContents, Long totalWidth) {
 		// 3. 총 너비를 구한다.
 		currentWidth += width;
 
-		// 4. 말풍선 너비보다 총 너비가 크면 개행문자를 추가한다.
+		// 4. 개행문자이면 줄 수를 센다.
+		if (text[0] == '\n') {
+			rowLength++;
+		}
+
+		// 5. 말풍선 너비보다 총 너비가 크면 개행문자를 추가한다.
 		if (currentWidth > totalWidth) {
 			rowLength++;
 			currentWidth = 0;

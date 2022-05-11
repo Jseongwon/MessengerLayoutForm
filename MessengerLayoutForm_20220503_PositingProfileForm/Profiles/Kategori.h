@@ -5,7 +5,6 @@
 using namespace std;
 
 namespace parkcom {
-	class DrawingGenerator;
 	class Kategori {
 	public:
 		enum { NORMAL = 0, SPECIAL = 1 };
@@ -18,7 +17,6 @@ namespace parkcom {
 
 		string& GetName() const;
 
-		virtual void Accept(DrawingGenerator* drawingGenerator) = 0;
 		virtual Kategori* Clone() = 0;
 
 	protected:

@@ -6,7 +6,6 @@
 작성일자 : 2022.04.29
 */
 #include "SpecialKategori.h"
-#include "../Generator/DrawingGenerator.h"
 using namespace parkcom;
 
 SpecialKategori::SpecialKategori() {
@@ -31,10 +30,6 @@ SpecialKategori& SpecialKategori::operator=(const SpecialKategori& source) {
 	Kategori::operator=(source);
 
 	return *this;
-}
-
-void SpecialKategori::Accept(DrawingGenerator* drawingGenerator) {
-	drawingGenerator->Visit(this);
 }
 
 Kategori* SpecialKategori::Clone() {
