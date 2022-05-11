@@ -70,16 +70,10 @@
     <ClCompile Include="Observers\ItemSubject.cpp">
       <Filter>Observers</Filter>
     </ClCompile>
-    <ClCompile Include="Observers\Observer.cpp">
-      <Filter>Observers</Filter>
-    </ClCompile>
     <ClCompile Include="Observers\ScrollActions.cpp">
       <Filter>Observers</Filter>
     </ClCompile>
     <ClCompile Include="Observers\Scrolls.cpp">
-      <Filter>Observers</Filter>
-    </ClCompile>
-    <ClCompile Include="Observers\Subject.cpp">
       <Filter>Observers</Filter>
     </ClCompile>
     <ClCompile Include="Observers\TextExtent.cpp">
@@ -157,19 +151,7 @@
     <ClCompile Include="Profiles\UserProfile.cpp">
       <Filter>Profiles</Filter>
     </ClCompile>
-    <ClCompile Include="Scanner\DefaultTextMode.cpp">
-      <Filter>Scanner</Filter>
-    </ClCompile>
-    <ClCompile Include="Scanner\LengthTextMode.cpp">
-      <Filter>Scanner</Filter>
-    </ClCompile>
     <ClCompile Include="Scanner\ListToken.cpp">
-      <Filter>Scanner</Filter>
-    </ClCompile>
-    <ClCompile Include="Scanner\Scanner.cpp">
-      <Filter>Scanner</Filter>
-    </ClCompile>
-    <ClCompile Include="Scanner\TextMode.cpp">
       <Filter>Scanner</Filter>
     </ClCompile>
     <ClCompile Include="Scanner\Token.cpp">
@@ -184,15 +166,10 @@
     <ClCompile Include="Utilities\Date.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="MessengerLayoutApp.cpp" />
-    <ClCompile Include="MessengerLayoutForm.cpp" />
     <ClCompile Include="Layout\ProfileStyle.cpp">
       <Filter>Layout</Filter>
     </ClCompile>
     <ClCompile Include="Layout\ChatProfileStyle.cpp">
-      <Filter>Layout</Filter>
-    </ClCompile>
-    <ClCompile Include="Layout\PostingProfileStyle.cpp">
       <Filter>Layout</Filter>
     </ClCompile>
     <ClCompile Include="Layout\DocumentProfileCompileMode.cpp">
@@ -209,6 +186,137 @@
     </ClCompile>
     <ClCompile Include="Profiles\CommentBodysState.cpp">
       <Filter>Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Caret.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\CaretController.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\CharacterMetrics.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Characters.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\CNTCommandFactory.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\CNTCommands.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\CNTKeyActionFactory.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\CNTKeyActions.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Composite.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\DrawingVisitor.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\DummyLine.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\DummyManager.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\FindReplaceDialog.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Font.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Glyph.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\GlyphFactory.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\GlyphMaker.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\HistoryBook.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Line.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Note.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\ScrollController.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Selection.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\TextEditingForm.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\Visitor.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="MessengerLayoutApp.cpp" />
+    <ClCompile Include="MessengerLayoutForm.cpp" />
+    <ClCompile Include="Interface\TextEdit.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Stack.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\String.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\HScrollActionFactory.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\HScrollActions.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\VScrollActionFactory.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\VScrollActions.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\GlyphObserver.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\GlyphScanner.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor\GlyphSubject.cpp">
+      <Filter>TextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\Observer.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observers\Subject.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\Scanner.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\ChatEditStyle.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\EditStyle.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout\DocumentProfileStyle.cpp">
+      <Filter>Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\ScanMode.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\DefaultScanMode.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner\LengthScanMode.cpp">
+      <Filter>Scanner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,16 +389,10 @@
     <ClInclude Include="Observers\ItemSubject.h">
       <Filter>Observers</Filter>
     </ClInclude>
-    <ClInclude Include="Observers\Observer.h">
-      <Filter>Observers</Filter>
-    </ClInclude>
     <ClInclude Include="Observers\ScrollActions.h">
       <Filter>Observers</Filter>
     </ClInclude>
     <ClInclude Include="Observers\Scrolls.h">
-      <Filter>Observers</Filter>
-    </ClInclude>
-    <ClInclude Include="Observers\Subject.h">
       <Filter>Observers</Filter>
     </ClInclude>
     <ClInclude Include="Observers\TextExtent.h">
@@ -368,19 +470,7 @@
     <ClInclude Include="Profiles\UserProfile.h">
       <Filter>Profiles</Filter>
     </ClInclude>
-    <ClInclude Include="Scanner\DefaultTextMode.h">
-      <Filter>Scanner</Filter>
-    </ClInclude>
-    <ClInclude Include="Scanner\LengthTextMode.h">
-      <Filter>Scanner</Filter>
-    </ClInclude>
     <ClInclude Include="Scanner\ListToken.h">
-      <Filter>Scanner</Filter>
-    </ClInclude>
-    <ClInclude Include="Scanner\Scanner.h">
-      <Filter>Scanner</Filter>
-    </ClInclude>
-    <ClInclude Include="Scanner\TextMode.h">
       <Filter>Scanner</Filter>
     </ClInclude>
     <ClInclude Include="Scanner\Token.h">
@@ -404,15 +494,10 @@
     <ClInclude Include="Utilities\Array.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="MessengerLayoutApp.h" />
-    <ClInclude Include="MessengerLayoutForm.h" />
     <ClInclude Include="Layout\ProfileStyle.h">
       <Filter>Layout</Filter>
     </ClInclude>
     <ClInclude Include="Layout\ChatProfileStyle.h">
-      <Filter>Layout</Filter>
-    </ClInclude>
-    <ClInclude Include="Layout\PostingProfileStyle.h">
       <Filter>Layout</Filter>
     </ClInclude>
     <ClInclude Include="Layout\DocumentProfileCompileMode.h">
@@ -429,6 +514,140 @@
     </ClInclude>
     <ClInclude Include="Profiles\CommentBodysState.h">
       <Filter>Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Caret.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\CaretController.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\CharacterMetrics.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Characters.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\CNTCommandFactory.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\CNTCommands.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\CNTKeyActionFactory.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\CNTKeyActions.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Composite.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\DrawingVisitor.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\DummyLine.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\DummyManager.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\FindReplaceDialog.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Font.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Glyph.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\GlyphFactory.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\GlyphMaker.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\HistoryBook.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Line.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Note.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\resource.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\ScrollController.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Selection.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\TextEditingForm.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\Visitor.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="MessengerLayoutApp.h" />
+    <ClInclude Include="MessengerLayoutForm.h" />
+    <ClInclude Include="Interface\TextEdit.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Stack.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\String.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\HScrollActionFactory.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\HScrollActions.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\VScrollActionFactory.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\VScrollActions.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\GlyphObserver.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\GlyphScanner.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor\GlyphSubject.h">
+      <Filter>TextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\Observer.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observers\Subject.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\Scanner.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\ChatEditStyle.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\EditStyle.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout\DocumentProfileStyle.h">
+      <Filter>Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\ScanMode.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\LengthScanMode.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner\DefaultScanMode.h">
+      <Filter>Scanner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -456,5 +675,16 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{d4e5c01a-3dc9-4678-91ad-aadb96a26123}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TextEditor">
+      <UniqueIdentifier>{fdf6dc24-2f25-4648-a143-de179ef264ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{a8bfb3a1-bce0-47f3-acf6-29e75a83fb0b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TextEditor\TextEditingForm.rc">
+      <Filter>TextEditor</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

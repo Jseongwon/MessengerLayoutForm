@@ -173,8 +173,10 @@ void PostingCardListStyle::OnDraw(CDC* pDC) {
 
 	profileCompiler = ProfileCompiler(this->pCurrentWnd, &drawingGenerator);
 	profileCompiler.Repair(ProfileCompileMode::POSTINGPROFILE);
-	profileCompiler.Compile();
-
+	if (this->onIsDrawing == true) {
+		this->onIsDrawing = false;
+		profileCompiler.Compile();
+	}
 	pDC->BitBlt(0, 0, clientRect.right, clientRect.bottom, &memoryDC, 0, 0, SRCCOPY);
 
 	memoryDC.SelectObject(oldBitmap);
@@ -189,4 +191,6 @@ void PostingCardListStyle::OnDraw(CDC* pDC) {
 
 	pDC->SelectObject(oldPen);
 	DeleteObject(hPen);
+
+	this->onIsDrawing = true;
 }

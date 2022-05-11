@@ -93,6 +93,7 @@ void CardListForm::OnClose() {
 	}
 	if (this->cardListStyle != 0) {
 		delete this->cardListStyle;
+		this->cardListStyle = 0;
 	}
 	ItemSubject::OnClose();
 }

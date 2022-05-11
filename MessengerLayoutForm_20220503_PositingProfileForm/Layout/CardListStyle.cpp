@@ -10,6 +10,7 @@ using namespace parkcom;
 
 CardListStyle::CardListStyle(CWnd* pCurrentWnd) {
 	this->pCurrentWnd = pCurrentWnd;
+	this->onIsDrawing = true;
 }
 
 CardListStyle::~CardListStyle() {

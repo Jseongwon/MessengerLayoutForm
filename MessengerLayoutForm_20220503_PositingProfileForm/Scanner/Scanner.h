@@ -11,7 +11,7 @@ namespace parkcom {
 		~Scanner();
 		Scanner& operator=(const Scanner& source);
 
-		Long Read(string pathFileName, int textMode);
+		Long Read(string pathFileName, int scanMode);
 
 		Token& Scan() const;
 		// 입력 : 위치, 출력 : 줄(행)의 토큰들, 개수

@@ -52,7 +52,8 @@ void ChatProfileStyle::OnDraw(CDC* pDC) {
 
 	profileCompiler = ProfileCompiler(this->pCurrentWnd, &drawingGenerator);
 	profileCompiler.Repair(ProfileCompileMode::CHATPROFILE);
-	if (strcmp(((ProfileForm*)this->pCurrentWnd)->baseName, "") != 0) {
+	if (strcmp(((ProfileForm*)this->pCurrentWnd)->baseName, "") != 0 && this->onIsDrawing == true) {
+		this->onIsDrawing = false;
 		profileCompiler.Compile();
 	}
 
@@ -61,4 +62,6 @@ void ChatProfileStyle::OnDraw(CDC* pDC) {
 	memoryDC.SelectObject(oldBitmap);
 	::DeleteObject(hBitmap);
 	memoryDC.DeleteDC();
+
+	this->onIsDrawing = true;
 }

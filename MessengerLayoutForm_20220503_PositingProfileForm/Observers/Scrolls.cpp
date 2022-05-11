@@ -44,57 +44,65 @@ Scroll& Scroll::operator =(const Scroll& source) {
 	return *this;
 }
 
-void Scroll::First() {
+Long Scroll::First() {
 	this->position = 0;
+	return this->position;
 }
 
-void Scroll::PreviousLine() {
+Long Scroll::PreviousLine() {
 	this->position -= this->lineLength;
 	if (this->position < 0) {
 		this->position = 0;
 	}
+	return this->position;
 }
 
-void Scroll::NextLine() {
+Long Scroll::NextLine() {
 	this->position += this->lineLength;
 	if (this->position >= this->maximum - this->pageLength) {
 		this->position = this->maximum - this->pageLength + 2;
 	}
+	return this->position;
 }
 
-void Scroll::PreviousPage() {
+Long Scroll::PreviousPage() {
 	this->position -= this->pageLength - this->lineLength;
 	if (this->position < 0) {
 		this->position = 0;
 	}
+	return this->position;
 }
 
-void Scroll::NextPage() {
+Long Scroll::NextPage() {
 	this->position += this->pageLength - this->lineLength;
 	if (this->position >= this->maximum - this->pageLength) {
 		this->position = this->maximum - this->pageLength + 2;
 	}
+	return this->position;
 }
 
-void Scroll::PreviousOneFifth() {
+Long Scroll::PreviousOneFifth() {
 	this->position -= this->pageLength / 5;
 	if (this->position < 0) {
 		this->position = 0;
 	}
+	return this->position;
 }
 
-void Scroll::NextOneFifth() {
+Long Scroll::NextOneFifth() {
 	this->position += this->pageLength / 5;
 	if (this->position >= this->maximum - this->pageLength) {
 		this->position = this->maximum - this->pageLength + 2;
 	}
+	return this->position;
 }
 
-void Scroll::Last() {
+Long Scroll::Last() {
 	this->position = this->maximum - this->pageLength + 2;
+	return this->position;
 }
 
-void Scroll::Move(Long amount) {
+Long Scroll::Move(Long amount) {
 	this->position = amount;
 	if (this->position < 0) {
 		this->position = 0;
@@ -102,6 +110,7 @@ void Scroll::Move(Long amount) {
 	else if (this->position >= this->maximum - this->pageLength && this->maximum > this->pageLength) {
 		this->position = this->maximum - this->pageLength + 2;
 	}
+	return this->position;
 }
 
 // ScrollBuilder

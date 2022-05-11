@@ -1,24 +1,24 @@
-// DefaultTextMode.cpp
+// DefaultScanMode.cpp
 /*
-파일명칭 : DefaultTextMode.cpp
+파일명칭 : DefaultScanMode.cpp
 기    능 : 기본 편집 클래스를 정의한다.
 작 성 자 : 정성원
 작성일자 : 2022.03.24
 */
-#include "DefaultTextMode.h"
+#include "DefaultScanMode.h"
 #include "ListToken.h"
 using namespace parkcom;
 
-DefaultTextMode::DefaultTextMode(ListToken* listToken)
-	: TextMode(listToken) {
+DefaultScanMode::DefaultScanMode(ListToken* listToken)
+	: ScanMode(listToken) {
 
 }
 
-DefaultTextMode::~DefaultTextMode() {
+DefaultScanMode::~DefaultScanMode() {
 
 }
 
-int DefaultTextMode::Scanning(char(*tokens)) {
+int DefaultScanMode::Scanning(char(*tokens)) {
 	Token token;
 
 	string tokenString = tokens;

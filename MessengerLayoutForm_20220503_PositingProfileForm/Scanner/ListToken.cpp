@@ -6,8 +6,8 @@
 작성일자 : 2022.02.18
 */
 #include "ListToken.h"
-#include "DefaultTextMode.h"
-#include "LengthTextMode.h"
+#include "DefaultScanMode.h"
+#include "LengthScanMode.h"
 using namespace parkcom;
 
 ListToken::ListToken(Long capacity)
@@ -16,22 +16,22 @@ ListToken::ListToken(Long capacity)
 	this->length = 0;
 	this->current = -1;
 
-	this->textMode = new DefaultTextMode(this);
+	this->scanMode = new DefaultScanMode(this);
 }
 
-ListToken::ListToken(string tokens, int textMode, Long capacity)
+ListToken::ListToken(string tokens, int scanMode, Long capacity)
 	: tokens(capacity) {
 	this->capacity = capacity;
 	this->length = 0;
 	this->current = -1;
 
-	if (textMode == ListToken::DEFAULT) {
-		this->textMode = new DefaultTextMode(this);
+	if (scanMode == ListToken::DEFAULT) {
+		this->scanMode = new DefaultScanMode(this);
 	}
-	else if (textMode == ListToken::LENGTH) {
-		this->textMode = new LengthTextMode(this);
+	else if (scanMode == ListToken::LENGTH) {
+		this->scanMode = new LengthScanMode(this);
 	}
-	this->textMode->Scanning((char*)tokens.c_str());
+	this->scanMode->Scanning((char*)tokens.c_str());
 }
 
 ListToken::ListToken(const ListToken& source)
@@ -40,17 +40,17 @@ ListToken::ListToken(const ListToken& source)
 	this->length = source.length;
 	this->current = source.current;
 
-	if (dynamic_cast<DefaultTextMode*>(source.textMode)) {
-		this->textMode = new DefaultTextMode(this);
+	if (dynamic_cast<DefaultScanMode*>(source.scanMode)) {
+		this->scanMode = new DefaultScanMode(this);
 	}
-	else if(dynamic_cast<LengthTextMode*>(source.textMode)) {
-		this->textMode = new LengthTextMode(this);
+	else if(dynamic_cast<LengthScanMode*>(source.scanMode)) {
+		this->scanMode = new LengthScanMode(this);
 	}
 }
 
 ListToken::~ListToken() {
-	if (this->textMode != 0) {
-		delete this->textMode;
+	if (this->scanMode != 0) {
+		delete this->scanMode;
 	}
 }
 
@@ -60,14 +60,14 @@ ListToken& ListToken::operator=(const ListToken& source) {
 	this->length = source.length;
 	this->current = source.current;
 
-	if (this->textMode != 0) {
-		delete this->textMode;
+	if (this->scanMode != 0) {
+		delete this->scanMode;
 	}
-	if (dynamic_cast<DefaultTextMode*>(source.textMode)) {
-		this->textMode = new DefaultTextMode(this);
+	if (dynamic_cast<DefaultScanMode*>(source.scanMode)) {
+		this->scanMode = new DefaultScanMode(this);
 	}
-	else if(dynamic_cast<LengthTextMode*>(source.textMode)) {
-		this->textMode = new LengthTextMode(this);
+	else if(dynamic_cast<LengthScanMode*>(source.scanMode)) {
+		this->scanMode = new LengthScanMode(this);
 	}
 
 	return *this;
@@ -89,34 +89,34 @@ ListToken::operator string() {
 Long ListToken::Scanning(string tokens) {
 	Long length = 0;
 	
-	length = this->textMode->Scanning((char*)tokens.c_str());
+	length = this->scanMode->Scanning((char*)tokens.c_str());
 
 	return length;
 }
 
-void ListToken::Repair(int textMode) {
-	if (this->textMode != 0) {
-		delete this->textMode;
-		this->textMode = 0;
+void ListToken::Repair(int scanMode) {
+	if (this->scanMode != 0) {
+		delete this->scanMode;
+		this->scanMode = 0;
 	}
-	if (textMode == ListToken::DEFAULT) {
-		this->textMode = new DefaultTextMode(this);
+	if (scanMode == ListToken::DEFAULT) {
+		this->scanMode = new DefaultScanMode(this);
 	}
-	else if (textMode == ListToken::LENGTH) {
-		this->textMode = new LengthTextMode(this);
+	else if (scanMode == ListToken::LENGTH) {
+		this->scanMode = new LengthScanMode(this);
 	}
 }
 
-void ListToken::Repair(string textMode) {
-	if (this->textMode != 0) {
-		delete this->textMode;
-		this->textMode = 0;
+void ListToken::Repair(string scanMode) {
+	if (this->scanMode != 0) {
+		delete this->scanMode;
+		this->scanMode = 0;
 	}
-	if (textMode == "Default") {
-		this->textMode = new DefaultTextMode(this);
+	if (scanMode == "Default") {
+		this->scanMode = new DefaultScanMode(this);
 	}
-	else if (textMode == "Length") {
-		this->textMode = new LengthTextMode(this);
+	else if (scanMode == "Length") {
+		this->scanMode = new LengthScanMode(this);
 	}
 }
 

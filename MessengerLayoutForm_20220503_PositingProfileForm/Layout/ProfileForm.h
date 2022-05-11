@@ -6,13 +6,13 @@
 #include "../Observers/ItemSubject.h"
 #include "../Profiles/Profile.h"
 #include "ChatProfileStyle.h"
-#include "PostingProfileStyle.h"
+#include "DocumentProfileStyle.h"
 using namespace parkcom;
 
 class ProfileForm : public ItemSubject {
 	friend class ProfileDirector;
 	friend ChatProfileStyle;
-	friend PostingProfileStyle;
+	friend DocumentProfileStyle;
 public:
 	CWnd* pParentWnd;
 	ProfileStyle* profileStyle;

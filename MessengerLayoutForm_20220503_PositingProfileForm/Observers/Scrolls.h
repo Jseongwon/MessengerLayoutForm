@@ -14,15 +14,15 @@ public:
 	Scroll(const Scroll& source);
 	virtual ~Scroll() = 0;
 	Scroll& operator =(const Scroll& source);
-	void First();
-	void PreviousLine();
-	void NextLine();
-	void PreviousPage();
-	void NextPage();
-	void PreviousOneFifth();
-	void NextOneFifth();
-	void Last();
-	void Move(Long amount);
+	Long First();
+	Long PreviousLine();
+	Long NextLine();
+	Long PreviousPage();
+	Long NextPage();
+	Long PreviousOneFifth();
+	Long NextOneFifth();
+	Long Last();
+	Long Move(Long amount);
 	virtual Scroll* Clone() { return 0; }
 
 	Long GetMinimum() const;

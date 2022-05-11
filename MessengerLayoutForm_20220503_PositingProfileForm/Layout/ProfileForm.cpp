@@ -39,7 +39,7 @@ void ProfileForm::Repair(int profileStyle) {
 		this->profileStyle = new ChatProfileStyle(this);
 	}
 	else if (profileStyle == ProfileStyle::POSTINGPROFILESTYLE) {
-		this->profileStyle = new PostingProfileStyle(this);
+		this->profileStyle = new DocumentProfileStyle(this);
 	}
 }
 

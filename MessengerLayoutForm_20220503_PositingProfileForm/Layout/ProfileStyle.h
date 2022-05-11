@@ -21,6 +21,7 @@ namespace parkcom {
 
 	protected:
 		CWnd* pCurrentWnd;
+		bool onIsDrawing;
 	};
 }
 

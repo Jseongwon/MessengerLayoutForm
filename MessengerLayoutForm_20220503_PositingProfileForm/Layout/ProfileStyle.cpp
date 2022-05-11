@@ -10,6 +10,7 @@ using namespace parkcom;
 
 ProfileStyle::ProfileStyle(CWnd* pCurrentWnd) {
 	this->pCurrentWnd = pCurrentWnd;
+	this->onIsDrawing = true;
 }
 
 ProfileStyle::~ProfileStyle() {

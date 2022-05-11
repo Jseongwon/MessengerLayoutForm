@@ -41,7 +41,7 @@ Scanner& Scanner::operator=(const Scanner& source) {
 	return *this;
 }
 
-Long Scanner::Read(string pathFileName, int textMode) {
+Long Scanner::Read(string pathFileName, int scanMode) {
 	ifstream fileStream;
 
 	ListToken listToken;
@@ -76,7 +76,7 @@ Long Scanner::Read(string pathFileName, int textMode) {
 
 			rowString = row;
 
-			if (textMode == ListToken::LENGTH) {
+			if (scanMode == ListToken::LENGTH) {
 				// 2. 줄의 총 길이를 구한다.
 				parenthesesBegin = rowString.find('[');
 				parenthesesEnd = rowString.find(']', parenthesesBegin);
@@ -106,8 +106,8 @@ Long Scanner::Read(string pathFileName, int textMode) {
 				strCurrentLength = contentsString.length();
 			}
 
-			//listToken.Repair(textMode);
-			listToken = ListToken(contentsString, textMode);
+			//listToken.Repair(scanMode);
+			listToken = ListToken(contentsString, scanMode);
 
 			// 2. 토큰들을 만든다.
 			if (this->length < this->capacity) {

@@ -196,7 +196,9 @@ void UserCardListStyle::OnDraw(CDC* pDC) {
 
 	profileCompiler = ProfileCompiler(this->pCurrentWnd, &drawingGenerator);
 	profileCompiler.Repair(ProfileCompileMode::USERPROFILE);
-	profileCompiler.Compile();
+	if (this->onIsDrawing == true) {
+		profileCompiler.Compile();
+	}
 
 	pDC->BitBlt(0, 0, clientRect.right, clientRect.bottom, &memoryDC, 0, 0, SRCCOPY);
 
@@ -212,4 +214,6 @@ void UserCardListStyle::OnDraw(CDC* pDC) {
 
 	pDC->SelectObject(oldPen);
 	DeleteObject(hPen);
+
+	this->onIsDrawing = true;
 }

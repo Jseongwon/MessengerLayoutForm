@@ -1,24 +1,24 @@
-// LengthTextMode.cpp
+// LengthScanMode.cpp
 /*
-파일명칭 : LengthTextMode.cpp
+파일명칭 : LengthScanMode.cpp
 기    능 : 길이 편집 클래스를 정의한다.
 작 성 자 : 정성원
 작성일자 : 2022.03.24
 */
-#include "LengthTextMode.h"
+#include "LengthScanMode.h"
 #include "ListToken.h"
 using namespace parkcom;
 
-LengthTextMode::LengthTextMode(ListToken* listToken)
-	: TextMode(listToken) {
+LengthScanMode::LengthScanMode(ListToken* listToken)
+	: ScanMode(listToken) {
 
 }
 
-LengthTextMode::~LengthTextMode() {
+LengthScanMode::~LengthScanMode() {
 
 }
 
-int LengthTextMode::Scanning(char(*tokens)) {
+int LengthScanMode::Scanning(char(*tokens)) {
 	Token token;
 
 	string tokenString = tokens;

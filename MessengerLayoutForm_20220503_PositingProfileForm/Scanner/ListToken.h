@@ -5,24 +5,24 @@
 #include "Token.h"
 
 namespace parkcom {
-	class TextMode;
+	class ScanMode;
 	class ListToken {
-		friend class DefaultTextMode;
-		friend class LengthTextMode;
+		friend class DefaultScanMode;
+		friend class LengthScanMode;
 
 	public:
 		enum { COMPILATIONERROR = -1, DEFAULT = 0, LENGTH = 1 };
 	public:
 		ListToken(Long capacity = 8);
-		ListToken(string tokens, int textMode, Long capacity = 8);
+		ListToken(string tokens, int scanMode, Long capacity = 8);
 		ListToken(const ListToken& source);
 		~ListToken();
 		ListToken& operator=(const ListToken& source);
 		operator string();
 
 		Long Scanning(string tokens);
-		void Repair(int textMode);
-		void Repair(string textMode);
+		void Repair(int scanMode);
+		void Repair(string scanMode);
 		
 		Token& Scan() const;
 		Token& GetAt(Long index) const;
@@ -30,7 +30,7 @@ namespace parkcom {
 		Long GetLength() const;
 		Long GetCurrent() const;
 
-		TextMode* GetTextMode() const;
+		ScanMode* GetScanMode() const;
 
 		bool IsTokenScan(Long current);
 		bool IsNext() const;
@@ -42,7 +42,7 @@ namespace parkcom {
 		Long length;
 		Long current;
 
-		TextMode* textMode;
+		ScanMode* scanMode;
 	};
 
 	inline Token& ListToken::GetAt(Long index) const {
@@ -57,8 +57,8 @@ namespace parkcom {
 	inline Long ListToken::GetCurrent() const {
 		return this->current;
 	}
-	inline TextMode* ListToken::GetTextMode() const {
-		return const_cast<TextMode*>(this->textMode);
+	inline ScanMode* ListToken::GetScanMode() const {
+		return const_cast<ScanMode*>(this->scanMode);
 	}
 
 	inline bool ListToken::IsTokenScan(Long current) {
