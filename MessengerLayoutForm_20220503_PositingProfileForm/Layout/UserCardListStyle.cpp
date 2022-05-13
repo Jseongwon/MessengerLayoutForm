@@ -54,6 +54,16 @@ void UserCardListStyle::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	((MessengerLayoutForm*)AfxGetMainWnd())->profileForm->UpdateWindow();
 }
 
+void UserCardListStyle::OnSize(UINT nType, int cx, int cy) {
+	LONG systemWidth;
+	LONG menuBarWidth;
+
+	systemWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	menuBarWidth = systemWidth / 22;
+	this->m_PersonalProfileRect.SetRect(0, 0, cx, menuBarWidth);
+	this->m_FriendProfileRect.SetRect(0, 0, cx, menuBarWidth / 8 * 7);
+}
+
 void UserCardListStyle::OnMouseMove(UINT nFlags, CPoint point) {
 	CRect clientRect;
 	CRect currentImageRect;

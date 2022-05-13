@@ -10,6 +10,7 @@ namespace parkcom {
 		virtual ~UserCardListStyle();
 
 		virtual void OnCreate(LPCREATESTRUCT lpCreateStruct);
+		virtual void OnSize(UINT nType, int cx, int cy);
 		virtual void OnMouseMove(UINT nFlags, CPoint point);
 		virtual void OnLButtonClicked(UINT nFlags, CPoint point);
 

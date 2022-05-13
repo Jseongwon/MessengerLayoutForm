@@ -5,8 +5,9 @@
 #include "../TextEditor/CharacterMetrics.h"
 #include "../TextEditor/ScrollController.h"
 
-TextEdit::TextEdit(COLORREF backgroundColor, BOOL isShowScroll)
+TextEdit::TextEdit(CWnd* pParentWnd, COLORREF backgroundColor, BOOL isShowScroll)
 	: TextEditingForm(backgroundColor, isShowScroll) {
+	this->pParentWnd = pParentWnd;
 	this->editStyle = 0;
 }
 
@@ -49,7 +50,12 @@ void TextEdit::OnClose() {
 }
 
 void TextEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
-	TextEditingForm::OnChar(nChar, nRepCnt, nFlags);
+	if ((nChar != VK_RETURN || (nChar == VK_RETURN && GetKeyState(VK_CONTROL) & 0x80)) && nChar != VK_TAB) {
+		TextEditingForm::OnChar(nChar, nRepCnt, nFlags);
+	}
+	else if(nChar == VK_RETURN) {
+		this->editStyle->OnChar(nChar, nRepCnt, nFlags);
+	}
 }
 
 void TextEdit::OnSetFocus(CWnd* pNewWnd) {

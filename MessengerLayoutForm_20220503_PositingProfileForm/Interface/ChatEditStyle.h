@@ -8,6 +8,8 @@ namespace parkcom {
 	public:
 		ChatEditStyle(TextEdit* textEdit = 0);
 		virtual ~ChatEditStyle();
+
+		virtual void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	};
 }
 

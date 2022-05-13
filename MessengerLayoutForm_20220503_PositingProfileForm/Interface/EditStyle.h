@@ -1,6 +1,7 @@
 // EditStyle.h
 #ifndef _EDITSTYLE_H
 #define _EDITSTYLE_H
+#include <afxwin.h>
 
 class TextEdit;
 namespace parkcom {
@@ -12,7 +13,9 @@ namespace parkcom {
 		EditStyle(TextEdit* textEdit = 0);
 		virtual ~EditStyle() = 0;
 
-	private:
+		virtual void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) = 0;
+
+	protected:
 		TextEdit* textEdit;
 	};
 }

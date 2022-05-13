@@ -7,12 +7,15 @@ typedef signed long int Long;
 
 namespace parkcom {
 	class Printer {
+	public:
 		Printer();
 		Printer(const Printer& source);
 		~Printer();
 		Printer& operator=(const Printer& source);
 
-		Long Write(string pathFileName, string contents);
+		Long Printing(string pathFileName, string contents);
+		string GetAddedFieldLengthString(string contents);
+		string GetAddedTableLengthString(string contents);
 	};
 }
 

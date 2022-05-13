@@ -1774,7 +1774,88 @@ void DrawingGenerator::Visit(FriendProfile* friendProfile) {
 }
 
 void DrawingGenerator::Visit(ChatProfile* chatProfile) {
+	ProfileDirector profileDirector(this->pCurrentWnd);
+
+	CRect clientRect;
+	CRect editFillRect;
+	CRect editBackgroundFillRect;
+	CRect editAreaRect;
+	CRect sendButtonAreaRect;
+	CRect fontRect;
+
+	LONG editExtent;
+	LONG editWidth;
+	LONG subMenuWidth;
+	LONG systemWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	LONG imageWidth = systemWidth / 22;
+	LONG sideMargin = imageWidth / 3;
+	
+	UINT nFormat;
+
+	COLORREF backgroundColor;
+	COLORREF textColor;
+	COLORREF oldColor;
+	COLORREF oldTextColor;
+
+	HFONT hFont;
+	HFONT oldFont;
+
+	LOGFONT logFont;
+
+	string baseName;
+
 	chatProfile->GetChatProfileState()->Accept(this);
+
+	baseName = profileDirector.GetBaseName();
+
+	// 텍스트 편집기를 그린다.
+	if (baseName != "") {
+		this->pCurrentWnd->GetClientRect(&clientRect);
+
+		systemWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+		editExtent = systemWidth / 22;
+		sideMargin = editExtent / 3;
+		editWidth = clientRect.Width() - sideMargin * 2;
+
+		subMenuWidth = systemWidth / 4;
+
+		editAreaRect.SetRect(sideMargin, clientRect.Height() - (editExtent + sideMargin),
+			(clientRect.Width() - sideMargin) - editExtent, clientRect.Height() - sideMargin);
+		editAreaRect.MoveToX(subMenuWidth + (clientRect.Width() / 2 - (clientRect.Width() - sideMargin) / 2));
+
+		sendButtonAreaRect.SetRect(editAreaRect.right - subMenuWidth, clientRect.Height() - (editExtent + sideMargin),
+			clientRect.Width() - sideMargin, clientRect.Height() - sideMargin);
+		sendButtonAreaRect.DeflateRect(0, sendButtonAreaRect.Height() / 4);
+
+		editBackgroundFillRect.SetRect(0, clientRect.Height() - (editExtent + sideMargin * 2), clientRect.Width(), clientRect.Height());
+		editFillRect.SetRect(sideMargin, clientRect.Height() - (editExtent + sideMargin),
+			(clientRect.Width() - sideMargin), clientRect.Height() - sideMargin);
+
+		this->pDC->FillSolidRect(&editBackgroundFillRect, this->backgroundColor);
+		this->pDC->FillSolidRect(&editFillRect, RGB(255, 255, 255));
+
+		fontRect.SetRect(sendButtonAreaRect.left, 0, sendButtonAreaRect.right, sendButtonAreaRect.Height() / 2);
+
+		nFormat = DT_CENTER | DT_VCENTER | DT_SINGLELINE;
+		backgroundColor = this->selectedTextColor;
+		textColor = this->textColor;
+
+		logFont = FindFontInRect(this->pDC, &fontRect, "맑은 고딕", 12);
+
+		hFont = CreateFontIndirect(&logFont);
+		oldFont = (HFONT)this->pDC->SelectObject(hFont);
+
+		oldColor = this->pDC->SetBkColor(backgroundColor);
+		oldTextColor = this->pDC->SetTextColor(textColor);
+		this->pDC->FillSolidRect(&sendButtonAreaRect, backgroundColor);
+		this->pDC->DrawText("전  송", &sendButtonAreaRect, nFormat);
+
+		this->pDC->SetTextColor(oldTextColor);
+		this->pDC->SetBkColor(oldColor);
+
+		this->pDC->SelectObject(oldFont);
+		DeleteObject(hFont);
+	}
 }
 
 void DrawingGenerator::Visit(SystemChatProfileState* systemChatProfileState) {
@@ -1782,6 +1863,7 @@ void DrawingGenerator::Visit(SystemChatProfileState* systemChatProfileState) {
 	CRect chatItemRect;
 	CRect basicBalloonRect;
 	CRect contentsRect;
+	CRect editBackgroundFillRect;
 
 	LOGFONT logFontNickname;
 	LOGFONT logFontContents;
@@ -1816,6 +1898,12 @@ void DrawingGenerator::Visit(SystemChatProfileState* systemChatProfileState) {
 	SubjectState* subjectState;
 
 	this->pCurrentWnd->GetClientRect(&clientRect);
+
+	// 편집기 영역을 구한다.
+	editBackgroundFillRect.SetRect(0, clientRect.Height() - (otherAccountImage + sideMargin * 2), clientRect.Width(), clientRect.Height());
+
+	// 화면 영역은 편집기 영역을 제한 부분.
+	clientRect.bottom -= editBackgroundFillRect.Height();
 
 	subjectState = dynamic_cast<ItemSubject*>(this->pCurrentWnd)->GetSubjectState();//
 
@@ -1934,6 +2022,7 @@ void DrawingGenerator::Visit(OneChatProfileState* oneChatProfileState) {
 	CRect triangleRect;
 	CRect contentsRect;
 	CRect dateRect;
+	CRect editBackgroundFillRect;
 
 	CPoint startPos;
 	CPoint triangle[3];
@@ -1990,6 +2079,12 @@ void DrawingGenerator::Visit(OneChatProfileState* oneChatProfileState) {
 	textExtent = subjectState->textExtent;
 
 	this->pCurrentWnd->GetClientRect(&clientRect);
+
+	// 편집기 영역을 구한다.
+	editBackgroundFillRect.SetRect(0, clientRect.Height() - (accountImage + sideMargin * 2), clientRect.Width(), clientRect.Height());
+
+	// 화면 영역은 편집기 영역을 제한 부분.
+	clientRect.bottom -= editBackgroundFillRect.Height();
 
 	ZeroMemory(&logFontNickname, sizeof(LOGFONT));
 	ZeroMemory(&logFontContents, sizeof(LOGFONT));
@@ -2177,6 +2272,7 @@ void DrawingGenerator::Visit(OtherChatProfileState* otherChatProfileState) {
 	CRect triangleRect;
 	CRect contentsRect;
 	CRect dateRect;
+	CRect editBackgroundFillRect;
 
 	CPoint startPos;
 	CPoint triangle[3];
@@ -2233,6 +2329,12 @@ void DrawingGenerator::Visit(OtherChatProfileState* otherChatProfileState) {
 	textExtent = subjectState->textExtent;
 
 	this->pCurrentWnd->GetClientRect(&clientRect);
+
+	// 편집기 영역을 구한다.
+	editBackgroundFillRect.SetRect(0, clientRect.Height() - (otherAccountImage + sideMargin * 2), clientRect.Width(), clientRect.Height());
+
+	// 화면 영역은 편집기 영역을 제한 부분.
+	clientRect.bottom -= editBackgroundFillRect.Height();
 
 	ZeroMemory(&logFontNickname, sizeof(LOGFONT));
 	ZeroMemory(&logFontContents, sizeof(LOGFONT));

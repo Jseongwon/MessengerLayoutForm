@@ -8,6 +8,7 @@ using namespace std;
 using namespace parkcom;
 
 class TextEdit : public TextEditingForm {
+	friend ChatEditStyle;
 public:
 	CWnd* pParentWnd;
 	EditStyle* editStyle;
@@ -15,7 +16,7 @@ public:
 	void Repair(int editStyle);
 
 public:
-	TextEdit(COLORREF backgroundColor = RGB(255, 255, 255), BOOL isShowScroll = FALSE);
+	TextEdit(CWnd* pParentWnd, COLORREF backgroundColor = RGB(255, 255, 255), BOOL isShowScroll = FALSE);
 	virtual int OnCreate(LPCREATESTRUCT lpCreateStruct);
 
 	void Write(string content); //юс╫ц

@@ -82,6 +82,8 @@ int CardListForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 void CardListForm::OnSize(UINT nType, int cx, int cy) {
 	CWnd::OnSize(nType, cx, cy);
 
+	this->cardListStyle->OnSize(nType, cx, cy);
+
 	this->Notify();
 	this->RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
 }

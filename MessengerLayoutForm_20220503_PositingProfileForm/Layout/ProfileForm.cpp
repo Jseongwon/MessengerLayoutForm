@@ -80,6 +80,8 @@ int ProfileForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 void ProfileForm::OnSize(UINT nType, int cx, int cy) {
 	ItemSubject::OnSize(nType, cx, cy);
 
+	this->profileStyle->OnSize(nType, cx, cy);
+
 	this->Notify();
 	this->RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
 

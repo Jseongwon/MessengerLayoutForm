@@ -43,6 +43,7 @@ void ChatProfileCompileMode::Compile() {
 
 	CDC* pDC;
 
+	CRect editBackgroundFillRect;
 	CRect prevClientRect;
 	CRect clientRect;
 	CRect systemChatProfileRect;
@@ -158,6 +159,12 @@ void ChatProfileCompileMode::Compile() {
 	// 1. 영역들을 구한다.
 	this->profileCompiler->pCurrentWnd->GetClientRect(&clientRect);
 
+	// 편집기 영역을 구한다.
+	editBackgroundFillRect.SetRect(0, clientRect.Height() - (imageWidth + sideMargin * 2), clientRect.Width(), clientRect.Height());
+
+	// 화면 영역은 편집기 영역을 제한 부분.
+	clientRect.bottom -= editBackgroundFillRect.Height();
+
 	nicknameFont.lfHeight = -MulDiv(10, pDC->GetDeviceCaps(LOGPIXELSY), 72);
 	strcpy_s(nicknameFont.lfFaceName, DEFAULT_FACENAME);
 
@@ -194,6 +201,7 @@ void ChatProfileCompileMode::Compile() {
 
 	// + 이전 화면 영역을 읽어온다.
 	prevClientRect = ((ItemState*)subject->GetSubjectState())->GetPrevRect();
+	prevClientRect.bottom -= editBackgroundFillRect.Height();
 	// 화면 크기가 달라질 경우 현재 위치를 마지막 위치로 조정한다.
 	if (clientRect.Height() != prevClientRect.Height()) {
 		scrollCurrent = scrollMax - scrollPage;

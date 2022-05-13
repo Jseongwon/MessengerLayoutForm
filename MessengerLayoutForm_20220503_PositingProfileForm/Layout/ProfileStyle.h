@@ -12,6 +12,7 @@ namespace parkcom {
 		ProfileStyle(CWnd* pCurrentWnd = 0);
 		virtual ~ProfileStyle() = 0;
 
+		virtual void OnSize(UINT nType, int cx, int cy) {  }
 		virtual void OnDraw(CDC* pDC) {  }
 		virtual void SpecialPosting(bool isSpecialPosting) {  }
 		virtual void SetDocumentRowLength(LONG documentRowLength) {  }
